@@ -1,0 +1,36 @@
+.mainBanner{
+    display:flex;
+    background-color: blueviolet;
+    color:white;
+    height:60%;
+}
+.mainBannerLeft{
+    flex-grow: 1;
+}
+.mainBannerMiddle{
+    flex-grow:3;
+}
+.mainBannerRight{
+    flex-grow: 1;
+}
+
+.mainSearch{
+ display:flex;
+}
+.mainSearchLeft{
+    background-color: beige;
+    flex-grow: 1;
+}
+.mainSearchMiddle{
+    background-color: brown;
+    flex-grow: 3;
+}
+.mainSearchRight{
+    background-color: aqua;
+    flex-grow: 1;
+}
+
+/* This may have to be moved to a diffrent component later on, or reactstrap maight take care of this */
+.caveCard{
+    border:solid black 4px;
+}

@@ -4,6 +4,9 @@ import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { onLoginStatusChange } from "./modules/authManager";
 import { getLoggedInUser } from "./modules/userProfileManager.js";
+import { Spinner } from "reactstrap";
+import Footer from "./components/Footer";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -31,6 +34,7 @@ function App() {
     <Router>
       <Header isLoggedIn={isLoggedIn} userType={user?.userTypeId} />
       <ApplicationViews isLoggedIn={isLoggedIn} user={user} />
+      <Footer />
     </Router>
   );
 }
