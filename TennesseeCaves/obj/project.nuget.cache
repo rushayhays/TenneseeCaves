@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "AQquDj9B55bfxmYQSTZQ7LTPQXUeKNZCg3PBlKHXGtI2yc4cJXhiZLsloblB/Zq3WhgDoyCeBsRdPjbGZk1o1A==",
+  "dgSpecHash": "nCxv69rosGpBy36YJTPuhc30aOzmvLkIVcvnHYcz57t8jNFKDWOPpQ0U2OEJv7U+/HBASYpLD4olloMEYPZUfA==",
   "success": true,
   "projectFilePath": "C:\\Users\\rusha\\workspace\\csharp\\VSprojects\\TennesseeCaves\\TennesseeCaves\\TennesseeCaves.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rusha\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\rusha\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",
+    "C:\\Users\\rusha\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.5\\microsoft.aspnetcore.authentication.jwtbearer.5.0.5.nupkg.sha512",
     "C:\\Users\\rusha\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
     "C:\\Users\\rusha\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\rusha\\.nuget\\packages\\microsoft.data.sqlclient\\4.1.0\\microsoft.data.sqlclient.4.1.0.nupkg.sha512",

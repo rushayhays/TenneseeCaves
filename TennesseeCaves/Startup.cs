@@ -1,17 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TennesseeCaves.Repositories;
 
 namespace TennesseeCaves
@@ -29,6 +23,7 @@ namespace TennesseeCaves
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
             services
@@ -85,9 +80,7 @@ namespace TennesseeCaves
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            //UseAuthentication() is added in before UseAuth... now that we have Firebase connected
-            app.UseAuthentication();
+            app.UseAuthentication(); //UseAuthentication() is added in before UseAuth, now that we have Firebase connected
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
