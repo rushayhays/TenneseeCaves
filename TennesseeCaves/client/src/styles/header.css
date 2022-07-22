@@ -16,12 +16,19 @@
 .headerMiddle{
     width:50%;
     display:flex;
-    align-items: flex-end;
+    justify-content: flex-end;
 }
+    /*Child of headerMiddle*/
+    .headerMiddleUserInfo{
+        display:flex;
+    }
 .headerRight{
     width:25%;
     text-align: right;
 }
 #logoutButton{
     padding-right: 20%;
+    color:white;
+    background-color: black;
+    font-size: 20px;
 }

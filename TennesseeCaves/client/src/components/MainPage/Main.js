@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../styles/main.css"
 
 export default function Main({isLoggedIn}){
@@ -21,8 +22,8 @@ export default function Main({isLoggedIn}){
                         </div>
                         :
                         <div>
-                            <button>Login</button>
-                            <button>Register</button>
+                            <Link to="/login"><button>Login</button></Link>
+                            <Link to="/register"><button>Register</button></Link>
                         </div>
                         }
                         
@@ -44,9 +45,13 @@ export default function Main({isLoggedIn}){
                 <div className="mainSearchMiddle">
                     {/* These are a placeholder until I geth the display caves to work */}
                     <div className="caveCard">
-                        <p>Pretend I'm a cool picture</p>
-                        <p>Now pretend I have a cave name</p>
-                        <p>Also pretend there is interesting info</p>
+                        <div className="caveCard_imageArea">
+                            <img src="https://discoverbristol.org/wp-content/uploads/2020/07/bristol-caves-underground-trip-ideas-hero.jpg" alt="bristol caverns"/>
+                        </div>
+                        <div>
+                            <p>Now pretend I have a cave name</p>
+                            <p>Also pretend there is interesting info</p>
+                        </div>
                     </div>
                     <div className="caveCard">
                         <p>Pretend I'm a cool picture</p>

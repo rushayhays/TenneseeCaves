@@ -51,4 +51,10 @@
 /* This may have to be moved to a diffrent component later on, or reactstrap maight take care of this */
 .caveCard{
     border:solid black 4px;
+    width:45%;
+}
+
+.caveCard img{
+    max-width:100%;
+    height:auto;
 }
