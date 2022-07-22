@@ -10,7 +10,8 @@ export default function ApplicationViews({ isLoggedIn, user }) {
       <main>
         <Routes>
             <Route path="/">
-                <Route index element={isLoggedIn ? <Main /> : <Navigate to="/login" />} />
+                <Route index element={<Main isLoggedIn={isLoggedIn}/>}/>
+                {/* <Route index element={isLoggedIn ? <Main user={user} /> : <Navigate to="/login" />} /> */}
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
                 <Route path="*" element={<p>Whoops, nothing here...</p>} />

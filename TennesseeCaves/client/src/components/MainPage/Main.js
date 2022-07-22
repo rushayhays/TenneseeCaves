@@ -1,7 +1,8 @@
 import React from "react";
 import "../../styles/main.css"
 
-export default function Main(){
+export default function Main({isLoggedIn}){
+    
     return(
         <>
             {/* search bar, title, login and register buttons, and social media tags */}
@@ -10,7 +11,25 @@ export default function Main(){
 
                 </div>
                 <div className="mainBannerMiddle"> {/*The bulk of the main page's items go here. Search bar, Title, Login and Register Buttons*/}
-                    <h1>Explore Under Tennessee</h1>
+                    <div className="upper_mainBannerMiddle">
+                        <div>
+                            <label></label>
+                            <input type="text"></input>
+                        </div>
+                        {(isLoggedIn)?
+                        <div>
+                        </div>
+                        :
+                        <div>
+                            <button>Login</button>
+                            <button>Register</button>
+                        </div>
+                        }
+                        
+                    </div>
+                    <div className="lower_mainBannerMiddle">
+                        <h1>Explore Under Tennessee</h1>
+                    </div>
                 </div>
                 <div className="mainBannerRight"> {/*Not much goes here either, but I'll probably put some social media links in*/}
 
@@ -24,6 +43,11 @@ export default function Main(){
                 </div>
                 <div className="mainSearchMiddle">
                     {/* These are a placeholder until I geth the display caves to work */}
+                    <div className="caveCard">
+                        <p>Pretend I'm a cool picture</p>
+                        <p>Now pretend I have a cave name</p>
+                        <p>Also pretend there is interesting info</p>
+                    </div>
                     <div className="caveCard">
                         <p>Pretend I'm a cool picture</p>
                         <p>Now pretend I have a cave name</p>

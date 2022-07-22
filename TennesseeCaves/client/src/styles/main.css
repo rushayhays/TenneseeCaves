@@ -2,32 +2,50 @@
     display:flex;
     background-color: blueviolet;
     color:white;
-    height:60%;
+    height:400px;
 }
 .mainBannerLeft{
-    flex-grow: 1;
+    width:25%;
 }
+
 .mainBannerMiddle{
-    flex-grow:3;
+    width:50%;
 }
+    /*These two are children of mainBannerMiddle*/
+    .upper_mainBannerMiddle{
+        display:flex;
+        height:33%
+    }
+        .upper_mainBannerMiddle button{
+            height:30px;
+            width:80px;
+        }
+    .lower_mainBannerMiddle{
+        height:66%
+    }
+        .lower_mainBannerMiddle h1{
+            margin-top: 0;
+        }
+    /**/
 .mainBannerRight{
-    flex-grow: 1;
+    width:25%;
 }
 
 .mainSearch{
  display:flex;
 }
 .mainSearchLeft{
-    background-color: beige;
-    flex-grow: 1;
+    width:25%
 }
 .mainSearchMiddle{
-    background-color: brown;
-    flex-grow: 3;
+    width:50%;
+    display:flex;
+    flex-wrap: wrap;
+    gap:20px;
+
 }
 .mainSearchRight{
-    background-color: aqua;
-    flex-grow: 1;
+    width:25%;
 }
 
 /* This may have to be moved to a diffrent component later on, or reactstrap maight take care of this */
