@@ -1,7 +1,11 @@
 import React from "react"
 import "../styles/header.css"
+import { logout } from "../modules/authManager"
 
-export default function Header(){
+export default function Header({isLoggedIn, user}){
+    const headerLogout = () =>{
+        logout();
+    }
     return(
         <div className="header">
             <div className="headerLeft">
@@ -9,12 +13,23 @@ export default function Header(){
             </div>
 
             <div className="headerMiddle">
-                <p>User's Name here..</p>
-                <p>User's Icon</p>
+                {(isLoggedIn)?
+                    <div className="headerMiddleUserInfo">
+                        <p>Hello, {user?.name}</p>
+                        <p>User's Icon</p>
+                    </div>
+                    :
+                    <div className="headerMiddleUserInfo">
+                    </div>
+                }
             </div>
 
             <div className="headerRight">
-                <p id="logoutButton">Logout</p>
+                {(isLoggedIn)?
+                    <button id="logoutButton" onClick={headerLogout}>Logout</button>
+                    :
+                    <p></p>
+                }
             </div>
         </div>
     );
