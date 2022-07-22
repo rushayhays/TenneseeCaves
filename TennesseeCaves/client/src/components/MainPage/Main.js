@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAllCaves } from "../../modules/caveManager";
 import "../../styles/main.css"
+import CaveCard from "../Caves/CaveCard";
 
 export default function Main({isLoggedIn}){
-    
+    const [caves, setCaves] = useState([]);
+
+    useEffect(()=>{
+       getAllCaves().then((allCaves)=>{
+       setCaves(allCaves)})
+       
+    }, [])
+
     return(
         <>
             {/* search bar, title, login and register buttons, and social media tags */}
@@ -44,35 +53,13 @@ export default function Main({isLoggedIn}){
                 </div>
                 <div className="mainSearchMiddle">
                     {/* These are a placeholder until I geth the display caves to work */}
-                    <div className="caveCard">
-                        <div className="caveCard_imageArea">
-                            <img src="https://discoverbristol.org/wp-content/uploads/2020/07/bristol-caves-underground-trip-ideas-hero.jpg" alt="bristol caverns"/>
-                        </div>
-                        <div>
-                            <p>Now pretend I have a cave name</p>
-                            <p>Also pretend there is interesting info</p>
-                        </div>
-                    </div>
-                    <div className="caveCard">
-                        <p>Pretend I'm a cool picture</p>
-                        <p>Now pretend I have a cave name</p>
-                        <p>Also pretend there is interesting info</p>
-                    </div>
-                    <div className="caveCard">
-                        <p>Pretend I'm a cool picture</p>
-                        <p>Now pretend I have a cave name</p>
-                        <p>Also pretend there is interesting info</p>
-                    </div>
-                    <div className="caveCard">
-                        <p>Pretend I'm a cool picture</p>
-                        <p>Now pretend I have a cave name</p>
-                        <p>Also pretend there is interesting info</p>
-                    </div>
-                    <div className="caveCard">
-                        <p>Pretend I'm a cool picture</p>
-                        <p>Now pretend I have a cave name</p>
-                        <p>Also pretend there is interesting info</p>
-                    </div>
+                    {(caves.count === 0)?
+                    <div></div>
+                    :
+                    caves.map((cave)=>(
+                        <CaveCard cave={cave} key={cave.id}/>
+                    ))}
+                  
                 </div>
                 <div className="mainSearchRight">
 

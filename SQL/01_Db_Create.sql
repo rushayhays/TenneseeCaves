@@ -31,7 +31,8 @@ CREATE TABLE [Cave] (
   [Website] nvarchar(255),
   [Location] nvarchar(255),
   [About] nvarchar(255),
-  [DateAdded] datetime NOT NULL
+  [DateAdded] datetime NOT NULL,
+  [BannerImageUrl] nvarchar(255)
 
   CONSTRAINT [FK_Cave_Access] Foreign Key ([AccessId]) REFERENCES [Access] ([Id])
 )

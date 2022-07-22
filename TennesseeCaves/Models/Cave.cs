@@ -11,5 +11,6 @@ namespace TennesseeCaves.Models
         public string Location { get; set; }    
         public string About { get; set; }   
         public DateTime DateAdded { get; set; }   
+        public string BannerImageUrl { get; set; }
     }
 }
