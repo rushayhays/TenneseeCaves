@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
 import Main from "./MainPage/Main";
+import CaveDetails from "./Caves/CaveDetails";
 
 export default function ApplicationViews({ isLoggedIn, user }) {
     return (
@@ -14,6 +15,7 @@ export default function ApplicationViews({ isLoggedIn, user }) {
                 {/* <Route index element={isLoggedIn ? <Main user={user} /> : <Navigate to="/login" />} /> */}
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
+                <Route path="caveDetails/:id" element={<CaveDetails/>}/>
                 <Route path="*" element={<p>Whoops, nothing here...</p>} />
             </Route>
         </Routes>

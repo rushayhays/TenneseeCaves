@@ -1,7 +1,30 @@
 import "../../styles/main.css"
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getSingleCaveById } from "../../modules/caveManager";
 
-export default function CaveDetails ({cave}){
+export default function CaveDetails (){
+    const [cave, setCave] = useState(
+        {
+            id: 0,
+            name:"",
+            accessId:0,
+            website:"",
+            location:"",
+            about:"",
+            dateAdded:"2022-05-23",
+            organizations: [],
+            tours:[],
+            images:[]
+
+        });
+    const { id } = useParams();
+
+    useEffect(()=>{
+        getSingleCaveById(id).then((singleCave)=>{
+            setCave(singleCave)
+        })
+    })
     return(
         <>
             {/* search bar, title, login and register buttons, and social media tags */}
