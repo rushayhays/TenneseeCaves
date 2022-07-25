@@ -16,7 +16,7 @@ export default function Header({isLoggedIn, user}){
                 {(isLoggedIn)?
                     <div className="headerMiddleUserInfo">
                         <p>Hello, {user?.name}</p>
-                        <p>User's Icon</p>
+                        <img id="userIcon" src="https://assets.mycast.io/characters/mole-1017619-normal.jpg?1600621647" alt="user icon"/>
                     </div>
                     :
                     <div className="headerMiddleUserInfo">

@@ -4,6 +4,7 @@
     align-items: center;
     background-color: black;
     color:white;
+    
 }
 
 .headerLeft{
@@ -11,6 +12,13 @@
 }
 #logo{
     padding-left: 5%;
+}
+
+#userIcon{
+    height:40px;
+    width:40px;
+    border-radius: 40%;
+    align-self: center;
 }
 
 .headerMiddle{

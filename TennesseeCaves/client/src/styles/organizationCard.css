@@ -1,0 +1,9 @@
+.orgCard{
+    border:solid black 4px;
+    width:45%;
+}
+
+.orgCard img{
+    max-width:100%;
+    height:80px;
+}

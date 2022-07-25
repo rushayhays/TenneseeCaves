@@ -1,6 +1,7 @@
 import React from "react";
+import "../../styles/organizationCard.css";
 
-export default function OrganizationCard({organization}){
+export default function OrganizationCard ({organization}){
     return(
         <div className="orgCard">
             <div className="orgCard_imageArea">

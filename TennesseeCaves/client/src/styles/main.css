@@ -41,7 +41,9 @@
     width:50%;
     display:flex;
     flex-wrap: wrap;
-    gap:20px;
+    justify-content: space-between;
+    background-color: antiquewhite;
+    gap: 20px;
 
 }
 .mainSearchRight{
@@ -51,7 +53,8 @@
 /* This may have to be moved to a diffrent component later on, or reactstrap maight take care of this */
 .caveCard{
     border:solid black 4px;
-    width:45%;
+    width:350px;
+  
 }
 
 .caveCard img{
