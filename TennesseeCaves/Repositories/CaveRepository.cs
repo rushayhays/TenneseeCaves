@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
 using TennesseeCaves.Models;
 using TennesseeCaves.Utils;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TennesseeCaves.Repositories
 {
@@ -47,7 +49,7 @@ namespace TennesseeCaves.Repositories
             }
         }
 
-        public Cave GetSingleCave()
+        public Cave GetSingleCave(int id)
         {
             using (var conn = Connection)
             {
@@ -55,35 +57,94 @@ namespace TennesseeCaves.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT c.Id, c.[Name], c.AccessId, c.Website, c.[Location], c.About, c.DateAdded, c.BannerImageUrl, o.[Name] AS OrgName, o.Website AS OrgWebsite, o.[Image] AS OrgImage
+                        SELECT c.Id, c.[Name], c.AccessId, c.Website, c.[Location], c.About, c.DateAdded, c.BannerImageUrl, 
+                        o.Id AS OrgId, o.[Name] AS OrgName, o.Website AS OrgWebsite, o.[Image] AS OrgImage, 
+                        t.Id AS TourId, t.TimeOfDay, t.TimeOfYear, t.Price, t.PeoplePerTour,
+                        i.Id AS ImageId, i.Url AS ImageUrl
                         FROM Cave c
                         LEFT JOIN CaveOrganization co ON co.CaveId = c.Id
                         LEFT JOIN Organization o ON o.Id = co.OrganizationId
+                        LEFT JOIN Tour t ON t.CaveId = c.Id
+                        LEFT JOIN Image i ON i.CaveId = c.Id
+                        WHERE c.Id = @Id;
                     ";
-
-                    Cave cave = null;
-
-                    var reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                    DbUtils.AddParameter(cmd, "@Id", id);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cave = new Cave()
+                        Cave cave = null;
+                        List<Organization> orgList = new List<Organization>();
+                        List<Tour> tourList = new List<Tour>();
+                        List<Image> imageList = new List<Image>();
+                        while (reader.Read())
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            Name = DbUtils.GetString(reader, "Name"),
-                            AccessId = DbUtils.GetInt(reader, "AccessId"),
-                            Website = DbUtils.GetString(reader, "Website"),
-                            Location = DbUtils.GetString(reader, "Location"),
-                            About = DbUtils.GetString(reader, "About"),
-                            DateAdded = DbUtils.GetDateTime(reader, "DateAdded"),
-                            BannerImageUrl = DbUtils.GetString(reader, "BannerImageUrl")
-
-                        };
+                            if(cave == null)
+                            {
+                                cave = new Cave()
+                                {
+                                    Id = DbUtils.GetInt(reader, "Id"),
+                                    Name = DbUtils.GetString(reader, "Name"),
+                                    AccessId = DbUtils.GetInt(reader, "AccessId"),
+                                    Website = DbUtils.GetString(reader, "Website"),
+                                    Location = DbUtils.GetString(reader, "Location"),
+                                    About = DbUtils.GetString(reader, "About"),
+                                    DateAdded = DbUtils.GetDateTime(reader, "DateAdded"),
+                                    BannerImageUrl = DbUtils.GetString(reader, "BannerImageUrl"),
+                                    Organizations = new List<Organization>(),
+                                    Images = new List<Image>(),
+                                    Tours = new List<Tour>()
+                                };
+                            }
+                            var orgId = DbUtils.GetInt(reader, "OrgId");
+                            var existingOrg = orgList.FirstOrDefault(o => o.Id == orgId);
+                            if (existingOrg == null)
+                            {
+                                existingOrg = new Organization()
+                                {
+                                    Id = DbUtils.GetInt(reader, "OrgId"),
+                                    Name = DbUtils.GetString(reader, "OrgName"),
+                                    Website = DbUtils.GetString(reader, "OrgWebsite"),
+                                    OrgImage = DbUtils.GetString(reader, "OrgImage")
+                                };
+                                orgList.Add(existingOrg);
+                            }
+                            var tourId = DbUtils.GetInt(reader, "TourId");
+                            var existingTour = tourList.FirstOrDefault(t => t.Id == tourId);
+                            if (existingTour == null)
+                            {
+                                existingTour = new Tour()
+                                {
+                                    Id = DbUtils.GetInt(reader, "TourId"),
+                                    CaveId = DbUtils.GetInt(reader, "Id"),
+                                    TimeOfDay = DbUtils.GetString(reader, "TimeOfDay"),
+                                    TimeOfYear = DbUtils.GetString(reader, "TimeOfYear"),
+                                    Price = DbUtils.GetDecimal(reader, "Price"),
+                                    PeoplePerTour = DbUtils.GetInt(reader, "PeoplePerTour")
+                                };
+                                tourList.Add(existingTour);
+                            }
+                            var imageId = DbUtils.GetInt(reader, "ImageId");
+                            var existingImage = imageList.FirstOrDefault(i => i.Id == imageId);
+                            if (existingImage == null)
+                            {
+                                existingImage = new Image()
+                                {
+                                    Id = DbUtils.GetInt(reader, "TourId"),
+                                    CaveId = DbUtils.GetInt(reader, "Id"),
+                                    Url = DbUtils.GetString(reader, "ImageUrl")
+                                };
+                                imageList.Add(existingImage);
+                            }
+                        }
+                        reader.Close();
+                        cave.Organizations.AddRange(orgList);
+                        cave.Images.AddRange(imageList);
+                        cave.Tours.AddRange(tourList);
+                        return cave;
                     }
-                    reader.Close();
-
-                    return cave;
                 }
             }
         }
+
+
     }
 }

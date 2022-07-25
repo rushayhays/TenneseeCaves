@@ -21,5 +21,12 @@ namespace TennesseeCaves.Controllers
         {
             return Ok(_caveRepository.GetAllCaves());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetSingleCave(int id)
+        {
+            return Ok(_caveRepository.GetSingleCave(id));
+        }
     }
 }
+
