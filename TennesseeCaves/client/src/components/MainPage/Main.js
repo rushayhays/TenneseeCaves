@@ -52,14 +52,12 @@ export default function Main({isLoggedIn}){
 
                 </div>
                 <div className="mainSearchMiddle">
-                    {/* These are a placeholder until I geth the display caves to work */}
                     {(caves.count === 0)?
                     <div></div>
                     :
                     caves.map((cave)=>(
                         <CaveCard cave={cave} key={cave.id}/>
                     ))}
-                  
                 </div>
                 <div className="mainSearchRight">
 

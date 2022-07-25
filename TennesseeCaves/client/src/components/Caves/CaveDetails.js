@@ -2,6 +2,7 @@ import "../../styles/main.css"
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSingleCaveById } from "../../modules/caveManager";
+import {OrganizationCard} from "../Organizations/OrganizationCard.js"
 
 export default function CaveDetails (){
     const [cave, setCave] = useState(
@@ -54,6 +55,14 @@ export default function CaveDetails (){
                 <div className="mainSearchMiddle">  {/*This will hold all the info about the cave */}
                     <h2>About</h2>
                     <p>{cave.about}</p>
+                    <h2>Organizations</h2>
+                    {(organizations.count === 0)?
+                    <div></div>
+                    :
+                    organizations.map((org)=>(
+                        <OrganizationCard organization={org} key={org.id}/>
+                    ))}
+
                   
                 </div>
                 <div className="mainSearchRight">
