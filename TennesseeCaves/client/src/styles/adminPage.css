@@ -1,0 +1,67 @@
+.adminBanner{
+    display:flex;
+    background-color: blueviolet;
+    color:white;
+    height:400px;
+}
+.adminBannerLeft{
+    width:25%;
+}
+
+.adminBannerMiddle{
+    width:50%;
+}
+    /*These two are children of adminBannerMiddle*/
+    .upper_adminBannerMiddle{
+        display:flex;
+        height:33%
+    }
+        .upper_adminBannerMiddle button{
+            height:30px;
+            width:90px;
+        }
+    .lower_adminBannerMiddle{
+        height:66%
+    }
+        .lower_adminBannerMiddle h1{
+            margin-top: 0;
+        }
+    /**/
+.adminBannerRight{
+    width:25%;
+}
+
+.adminSearch{
+ display:flex;
+}
+.adminSearchLeft{
+    width:25%
+}
+.adminSearchMiddle{
+    width:50%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: antiquewhite;
+    gap: 20px;
+
+}
+.adminSearchRight{
+    width:25%;
+}
+
+/* This may have to be moved to a diffrent component later on, or reactstrap maight take care of this */
+.adminCardArea{
+    display:flex;
+    gap:20px;
+}
+.adminCard{
+    border:solid black 4px;
+    width:350px;
+  
+}
+
+.adminCard img{
+    max-width:100%;
+    height:auto;
+}

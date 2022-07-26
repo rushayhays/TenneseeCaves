@@ -29,7 +29,17 @@
     /*Child of headerMiddle*/
     .headerMiddleUserInfo{
         display:flex;
+        width:100%;
+        justify-content: space-between;
     }
+        .headerViews{
+            display:flex;
+            gap:20px;
+        }
+        .headerUser{
+            display:flex;
+            gap:20px;
+        }
 .headerRight{
     width:25%;
     text-align: right;
