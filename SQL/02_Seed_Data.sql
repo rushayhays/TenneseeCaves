@@ -11,9 +11,9 @@ insert into [Access] ([Id],[AccessLevel]) VALUES (1,'Public'),(2,'Restricted'),(
 set identity_insert [Access] off
 
 set identity_insert [Cave] on
-insert into [Cave] ([Id],[Name],[AccessId],[Website],[Location],[About],[DateAdded]) VALUES (1,'Cumberland Caverns', 1,'https://cumberlandcaverns.com/','1437 Cumberland Caverns Rd, McMinnville, TN, 37110','With more than 32 miles of caves and underground passageways, incredible underground rock formations, beautiful underground waterfalls, gleaming pools, there is plenty of fun and adventure for everyone!','2022-07-20'),
-(2,'The Lost Sea',1,'https://thelostsea.com/','140 Lost Sea Rd, Sweetwater, TN, 37874','The Lost Sea is one of the most popular caving destinations. The adventure begins with a guided tour of the caverns, which involves a ¾ mile round-trip walk on wide sloping pathways.','2022-07-20'),
-(3,'Bristol Caverns',1,'https://bristolcaverns.com/','1157 Bristol Caverns Hwy, Briston, TN, 37620','Bristol Caverns offer unique paved, well-lit walkways that wind through the vaulted chambers and along the banks of the ancient Underground','2022-07-20');
+insert into [Cave] ([Id],[Name],[AccessId],[Website],[Location],[About],[DateAdded],[BannerImageUrl]) VALUES (1,'Cumberland Caverns', 1,'https://cumberlandcaverns.com/','1437 Cumberland Caverns Rd, McMinnville, TN, 37110','With more than 32 miles of caves and underground passageways, incredible underground rock formations, beautiful underground waterfalls, gleaming pools, there is plenty of fun and adventure for everyone!','2022-07-20','https://live.staticflickr.com/4327/35615110550_ba1a722554_b.jpg'),
+(2,'The Lost Sea',1,'https://thelostsea.com/','140 Lost Sea Rd, Sweetwater, TN, 37874','The Lost Sea is one of the most popular caving destinations. The adventure begins with a guided tour of the caverns, which involves a ¾ mile round-trip walk on wide sloping pathways.','2022-07-20','https://www.visitloudoncounty.com/wp-content/uploads/2018/04/lost-sea.jpg'),
+(3,'Bristol Caverns',1,'https://bristolcaverns.com/','1157 Bristol Caverns Hwy, Briston, TN, 37620','Bristol Caverns offer unique paved, well-lit walkways that wind through the vaulted chambers and along the banks of the ancient Underground','2022-07-20','https://discoverbristol.org/wp-content/uploads/2020/07/bristol-caves-underground-trip-ideas-hero.jpg');
 set identity_insert [Cave] off
 
 set identity_insert [Image] on
