@@ -4,6 +4,7 @@
     align-items: center;
     background-color: black;
     color:white;
+    
 }
 
 .headerLeft{
@@ -11,6 +12,13 @@
 }
 #logo{
     padding-left: 5%;
+}
+
+#userIcon{
+    height:40px;
+    width:40px;
+    border-radius: 40%;
+    align-self: center;
 }
 
 .headerMiddle{
@@ -21,7 +29,17 @@
     /*Child of headerMiddle*/
     .headerMiddleUserInfo{
         display:flex;
+        width:100%;
+        justify-content: space-between;
     }
+        .headerViews{
+            display:flex;
+            gap:20px;
+        }
+        .headerUser{
+            display:flex;
+            gap:20px;
+        }
 .headerRight{
     width:25%;
     text-align: right;
