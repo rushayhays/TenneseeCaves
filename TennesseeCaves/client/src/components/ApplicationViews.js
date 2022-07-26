@@ -7,6 +7,7 @@ import Main from "./MainPage/Main";
 import CaveDetails from "./Caves/CaveDetails";
 import UserPage from "./UserPage";
 import AdminPage from "./AdminPage";
+import ManageCaves from "./Caves/ManageCaves";
 
 export default function ApplicationViews({ isLoggedIn, user }) {
     return (
@@ -17,6 +18,7 @@ export default function ApplicationViews({ isLoggedIn, user }) {
                 {/* <Route index element={isLoggedIn ? <Main user={user} /> : <Navigate to="/login" />} /> */}
                 <Route path="userPage" element={<UserPage user={user}/>}/>
                 <Route path="adminPage" element={<AdminPage/>}/>
+                <Route path="manageCaves" element={<ManageCaves/>}/>
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
                 <Route path="caveDetails/:id" element={<CaveDetails/>}/>

@@ -1,12 +1,24 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "../styles/header.css"
 import { logout } from "../modules/authManager"
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Spinner } from "reactstrap";
 
 export default function Header({isLoggedIn, user}){
+    // This use state and the use effect are not actually catching the state of isAdmin properly
+    const[isAdminSetting, setIsAdminSetting] = useState(true)
     const headerLogout = () =>{
         logout();
     }
+
+    
+    useEffect(()=>{
+        setIsAdminSetting(user?.isAdmin)
+    },[])
+
+   
+
     return(
         <div className="header">
             <div className="headerLeft">
@@ -16,7 +28,7 @@ export default function Header({isLoggedIn, user}){
             <div className="headerMiddle">
                 {(isLoggedIn)?
                     <div className="headerMiddleUserInfo">
-                        {(user.isAdmin)?
+                        {(isAdminSetting)?
                         <div className="headerViews">
                             <Link to="/userPage"><p>User View</p></Link>
                             <Link to="/adminPage"><p>Admin View</p></Link>

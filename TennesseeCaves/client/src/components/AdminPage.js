@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/adminPage.css"
 
 export default function AdminPage(){
@@ -24,30 +25,36 @@ export default function AdminPage(){
                 <div className="lower_adminBannerMiddle">
                     <h1>Manage TennCaves</h1>
                     <div className="adminCardArea">
-                        <div className="adminCard">
-                            <div className="adminCard_imageArea">
-                                <img src="https://i.natgeofe.com/n/f3500942-4eb9-4dfa-b6c9-53cd5510cd46/47789_16x9.jpg?w=1200" alt="cave Image"/>
+                        <Link to={"/manageCaves"}>
+                            <div className="adminCard">
+                                <div className="adminCard_imageArea">
+                                    <img src="https://i.natgeofe.com/n/f3500942-4eb9-4dfa-b6c9-53cd5510cd46/47789_16x9.jpg?w=1200" alt="cave Image"/>
+                                </div>
+                                <div>
+                                    <p>click this too manage caves</p>
+                                </div>
                             </div>
-                            <div>
-                                <p>click this too manage caves</p>
+                        </Link>
+                        <Link to={"/manageCaves"}>
+                            <div className="adminCard">
+                                <div className="adminCard_imageArea">
+                                    <img src="https://www.nps.gov/wica/planyourvisit/images/Ranger-Tammy-Wright-edit.jpg?maxwidth=1200&maxheight=1200&autorotate=false" alt="organizations, Ranger Tammy Wright"/>
+                                </div>
+                                <div>
+                                    <p>click this to manage organizations</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="adminCard">
-                            <div className="adminCard_imageArea">
-                                <img src="https://www.nps.gov/wica/planyourvisit/images/Ranger-Tammy-Wright-edit.jpg?maxwidth=1200&maxheight=1200&autorotate=false" alt="organizations, Ranger Tammy Wright"/>
+                        </Link>
+                        <Link to={"/manageCaves"}>
+                            <div className="adminCard">
+                                <div className="adminCard_imageArea">
+                                    <img src="https://s3-us-west-1.amazonaws.com/contentlab.studiod/getty/0157feb3d7054a7294dce785fbbca5ec" alt="User Profile Image"/>
+                                </div>
+                                <div>
+                                    <p>click this to manage users</p>
+                                </div>
                             </div>
-                            <div>
-                                <p>click this to manage organizations</p>
-                            </div>
-                        </div>
-                        <div className="adminCard">
-                            <div className="adminCard_imageArea">
-                                <img src="https://s3-us-west-1.amazonaws.com/contentlab.studiod/getty/0157feb3d7054a7294dce785fbbca5ec" alt="User Profile Image"/>
-                            </div>
-                            <div>
-                                <p>click this to manage users</p>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
