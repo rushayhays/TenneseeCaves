@@ -56,7 +56,7 @@ namespace TennesseeCaves.Repositories
                     cmd.CommandText = @"
                         SELECT Id, CaveId, TimeOfDay, TimeOfYear, Price, PeoplePerTour
                         FROM Tour
-                        WHERE Id = 2
+                        WHERE Id = @Id
                     ";
                     DbUtils.AddParameter(cmd, "@Id", id);
                     using (SqlDataReader reader = cmd.ExecuteReader())

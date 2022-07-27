@@ -45,6 +45,41 @@ namespace TennesseeCaves.Repositories
             }
         }
 
+        public Organization GetSingleOrg(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, [Name], Website, [Image]
+                        FROM Organization
+                        WHERE Id = @Id
+                    ";
+                    DbUtils.AddParameter(cmd, "@Id", id);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Organization org = null;
+                        if (reader.Read())
+                        {
+                            org = new Organization()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                Website = DbUtils.GetString(reader, "Website"),
+                                OrgImage = DbUtils.GetString(reader, "Image")
+
+                            };
+                        }
+                        reader.Close();
+                        return org;
+                    }
+                }
+            }
+        }
+
+
         public void AddOrganization(Organization org)
         {
             using (SqlConnection conn = Connection)

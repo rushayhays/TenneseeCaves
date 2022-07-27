@@ -49,13 +49,18 @@ namespace TennesseeCaves.Controllers
         }
 
         [HttpPost("caveOrganization")]
-        public IActionResult Post(int id, List<int> orgIds)
+        public IActionResult Post(Cave cave)
         {
-            _caveRepository.UpdateCaveOrganizations(id, orgIds);
+            //Use Select to create a list of Organization Ids to pass to Update method
+            List<int> orgIds = new List<int>();
+            cave.Organizations.Select(o => {
+                orgIds.Add(o.Id)
+            })
+            _caveRepository.UpdateCaveOrganizations(cave.Id, cave.Organizations);
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteCave(int id)
         {
             _caveRepository.DeleteCave(id);

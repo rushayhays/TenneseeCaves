@@ -22,6 +22,12 @@ namespace TennesseeCaves.Controllers
             return Ok(_orgRepository.GetAllOrganizations());
         }
 
+        [HttpGet("singleOrg/{id}")]
+        public IActionResult GetSingleOrg(int id)
+        {
+            return Ok(_orgRepository.GetSingleOrg(id));
+        }
+
         [HttpPost]
         public IActionResult Post(Organization org)
         {
@@ -41,7 +47,7 @@ namespace TennesseeCaves.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteOrg(int id)
         {
             _orgRepository.DeleteOrg(id);

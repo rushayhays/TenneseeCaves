@@ -48,7 +48,7 @@ namespace TennesseeCaves.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTour(int id)
         {
             _tourRepository.DeleteTour(id);
