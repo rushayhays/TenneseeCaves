@@ -145,6 +145,91 @@ namespace TennesseeCaves.Repositories
             }
         }
 
+        public void AddCave(Cave cave)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Cave ([Name], AccessId, Website, Location, About, DateAdded, BannerImageUrl)
+                        OUTPUT INSERTED.ID
+                        VALUES (@Name, @AccessId, @Website, @Location, @About, @DateAdded, @BannerImageUrl)
+                    ";
+                    cmd.Parameters.AddWithValue("@Name", cave.Name);
+                    cmd.Parameters.AddWithValue("@AccessId", cave.AccessId);
+                    cmd.Parameters.AddWithValue("@Website", cave.Website);
+                    cmd.Parameters.AddWithValue ("@Location", cave.Location);
+                    cmd.Parameters.AddWithValue("@About", cave.About);
+                    cmd.Parameters.AddWithValue("@DateAdded", cave.DateAdded);
+                    cmd.Parameters.AddWithValue("@BannerImageUrl", cave.BannerImageUrl);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    cave.Id = id;
+                }
+            }
+        }
+
+        public void UpdateCaveGeneralInfo(Cave cave)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Cave
+                        SET Name=@Name,
+                            AccessId=@AccessId,
+                            Website=@Website,
+                            Location=@Location,
+                            About=@About,
+                            DateAdded=@DateAdded,
+                            BannerImageUrl=@BannerImageUrl)
+                        WHERE Id=@Id
+                    ";
+                    cmd.Parameters.AddWithValue("@Name", cave.Name);
+                    cmd.Parameters.AddWithValue("@AccessId", cave.AccessId);
+                    cmd.Parameters.AddWithValue("@Website", cave.Website);
+                    cmd.Parameters.AddWithValue("@Location", cave.Location);
+                    cmd.Parameters.AddWithValue("@About", cave.About);
+                    cmd.Parameters.AddWithValue("@DateAdded", cave.DateAdded);
+                    cmd.Parameters.AddWithValue("@BannerImageUrl", cave.BannerImageUrl);
+
+                    cmd.Parameters.AddWithValue("@Id", cave.Id);
+
+                    cmd.ExecuteNonQuery(); 
+                }
+            }
+        }
+
+        public void UpdateCaveOrganizations(int caveId, List<int> orgIds)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM CaveOrganization WHERE CaveId = @CaveId";
+                    cmd.Parameters.AddWithValue("@CaveId", caveId);
+                    cmd.ExecuteNonQuery();
+
+
+                    cmd.CommandText = @"INSERT INTO CaveOrganization (CaveId, OrganizationId) 
+                                        VALUES (@CaveId, @OrgId)";
+
+                    foreach (int orgId in orgIds)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@CaveId", caveId);
+                        cmd.Parameters.AddWithValue("@OrgId", orgId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
 
     }
 }
