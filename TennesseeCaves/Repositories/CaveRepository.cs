@@ -230,6 +230,24 @@ namespace TennesseeCaves.Repositories
             }
         }
 
+        public void DeleteCave(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DELETE FROM Cave
+                        WHERE Id = @Id
+                    ";
+
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
     }
 }

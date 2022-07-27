@@ -90,5 +90,24 @@ namespace TennesseeCaves.Repositories
                 }
             }
         }
+
+        public void DeleteOrg(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DELETE FROM Organization
+                        WHERE Id = @Id
+                    ";
+
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

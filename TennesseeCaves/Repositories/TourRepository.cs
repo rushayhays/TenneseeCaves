@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace TennesseeCaves.Repositories
 {
-    public class TourRepository : BaseRepository
+    public class TourRepository : BaseRepository, ITourRepository
     {
         public TourRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -80,6 +80,78 @@ namespace TennesseeCaves.Repositories
                 }
             }
         }
+
+        public void AddTour(Tour tour)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Tour (CaveId, TimeOfDay, TimeOfYear, Price, PeoplePerTour)
+                        OUTPUT INSERTED.ID
+                        VALUES (@CaveId, @TimeOfDay, @TimeOfYear, @Price, @PeoplePerTour)
+                    ";
+                    cmd.Parameters.AddWithValue("@CaveId", tour.CaveId);
+                    cmd.Parameters.AddWithValue("@TimeOfDay", tour.TimeOfDay);
+                    cmd.Parameters.AddWithValue("@TimeOfYear", tour.TimeOfYear);
+                    cmd.Parameters.AddWithValue("@Price", tour.Price);
+                    cmd.Parameters.AddWithValue("@PeoplePerTour", tour.PeoplePerTour);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    tour.Id = id;
+                }
+            }
+        }
+
+        public void UpdateTour(Tour tour)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Tour
+                        SET CaveId=@CaveId,
+                            TimeOfDay=@TimeOfDay,
+                            TimeOfYear=@TimeOfYear,
+                            Price=@Price,
+                            PeoplePerTour=@PeoplePerTour
+                        WHERE Id = @Id
+                    ";
+                    cmd.Parameters.AddWithValue("@CaveId", tour.CaveId);
+                    cmd.Parameters.AddWithValue("@TimeOfDay", tour.TimeOfDay);
+                    cmd.Parameters.AddWithValue("@TimeOfYear", tour.TimeOfYear);
+                    cmd.Parameters.AddWithValue("@Price", tour.Price);
+                    cmd.Parameters.AddWithValue("@PeoplePerTour", tour.PeoplePerTour);
+                    cmd.Parameters.AddWithValue("@Id", tour.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteTour(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        DELETE FROM Tour
+                        WHERE Id = @Id
+                    ";
+                   
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
 
 

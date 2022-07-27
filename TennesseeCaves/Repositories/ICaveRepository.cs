@@ -10,5 +10,6 @@ namespace TennesseeCaves.Repositories
         void AddCave(Cave cave);
         void UpdateCaveGeneralInfo(Cave cave);
         void UpdateCaveOrganizations(int caveId, List<int> orgIds);
+        void DeleteCave(int id);
     }
 }

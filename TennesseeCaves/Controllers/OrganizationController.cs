@@ -41,5 +41,12 @@ namespace TennesseeCaves.Controllers
             return NoContent();
         }
 
+        [HttpDelete]
+        public IActionResult DeleteOrg(int id)
+        {
+            _orgRepository.DeleteOrg(id);
+            return NoContent();
+        }
+
     }
 }

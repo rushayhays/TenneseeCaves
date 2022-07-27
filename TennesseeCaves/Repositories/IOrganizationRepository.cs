@@ -8,5 +8,6 @@ namespace TennesseeCaves.Repositories
         List<Organization> GetAllOrganizations();
         void AddOrganization(Organization org);
         void UpdateOrganization(Organization org);
+        void DeleteOrg(int id);
     }
 }
