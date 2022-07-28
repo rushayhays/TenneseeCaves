@@ -1,4 +1,16 @@
+import { useNavigate, useParams } from "react-router-dom";
+
 export default function CaveListItem({cave}){
+    const navigate = useNavigate();
+
+    const goToEditPage = () =>{
+        navigate(`/manageCaves/editCave/${cave.id}`)
+    }
+
+    const goToManageToursPage = () =>{
+        navigate(`/manageCaves/caveTours/${cave.id}`)
+    }
+
     return(
         <div className="caveListCard">
             <div className="clc_pic">
@@ -8,10 +20,10 @@ export default function CaveListItem({cave}){
                 <p>{cave.name}</p>
             </div>
             <div className="clc_linkButton">
-                <button>General Info</button>
+                <button onClick={goToEditPage}>General Info</button>
             </div>
             <div className="clc_linkButton">
-                <button>Tours</button>   
+                <button onClick={goToManageToursPage}>Tours</button>   
             </div>
             <div className="clc_linkButton">
                 <button>Organizations</button>   

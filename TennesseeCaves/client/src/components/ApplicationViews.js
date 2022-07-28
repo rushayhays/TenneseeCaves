@@ -12,6 +12,8 @@ import AddCaveForm from "./Caves/AddCaveForm";
 import ManageOrganizations from "./Organizations/ManageOrganizations";
 import AddOrganizationForm from "./Organizations/AddOrganizationForm";
 import EditOrganizationForm from "./Organizations/EditOrganizationForm";
+import EditGeneralCave from "./Caves/EditGeneralCave";
+import ManageCaveTours from "./Caves/ManageCaveTours";
 
 export default function ApplicationViews({ isLoggedIn, user }) {
     return (
@@ -25,6 +27,8 @@ export default function ApplicationViews({ isLoggedIn, user }) {
                 <Route path="manageCaves">
                   <Route index element={<ManageCaves/>}/>
                   <Route path="addCave" element={<AddCaveForm/>}/>
+                  <Route path="editCave/:id" element={<EditGeneralCave/>}/>
+                  <Route path="caveTours/:id" element={<ManageCaveTours/>}/>
                 </Route>
                 <Route path="manageOrganizations">
                   <Route index element={<ManageOrganizations/>}/>
