@@ -1,4 +1,11 @@
+import { useNavigate, useParams } from "react-router-dom";
+
 export default function OrgListItem({organization}){
+    const navigate = useNavigate();
+    const goToEditPage = () =>{
+        navigate(`/manageOrganizations/editOrganization/${organization.id}`)
+    }
+
     return(
         <div className="caveListCard">
             <div className="clc_pic">
@@ -11,7 +18,7 @@ export default function OrgListItem({organization}){
                 <p>{organization.website}</p>
             </div>
             <div className="clc_linkButton">
-                <button>Edit</button>   
+                <button onClick={goToEditPage}>Edit</button>   
             </div>
             <div className="clc_deleteButton">
                 <button>Delete</button>

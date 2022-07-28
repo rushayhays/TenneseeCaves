@@ -10,6 +10,8 @@ import AdminPage from "./AdminPage";
 import ManageCaves from "./Caves/ManageCaves";
 import AddCaveForm from "./Caves/AddCaveForm";
 import ManageOrganizations from "./Organizations/ManageOrganizations";
+import AddOrganizationForm from "./Organizations/AddOrganizationForm";
+import EditOrganizationForm from "./Organizations/EditOrganizationForm";
 
 export default function ApplicationViews({ isLoggedIn, user }) {
     return (
@@ -26,6 +28,8 @@ export default function ApplicationViews({ isLoggedIn, user }) {
                 </Route>
                 <Route path="manageOrganizations">
                   <Route index element={<ManageOrganizations/>}/>
+                  <Route path="addOrganization" element={<AddOrganizationForm/>}/>
+                  <Route path="editOrganization/:id" element={<EditOrganizationForm/>}/>
                 </Route>
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />

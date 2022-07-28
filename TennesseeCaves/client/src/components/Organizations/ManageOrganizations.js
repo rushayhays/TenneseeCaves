@@ -19,8 +19,7 @@ export default function ManageOrganizations(){
                 <div className="mCaveCenter_upper">
                     <h1>Manage Organizations</h1>
                     <div className="mCaveCenter_upper_addCave">
-                        <p>Add an Organization</p>
-                       {/* <Link to={"/manageCaves/addCave"}><p>Add a Cave</p></Link>  */}
+                       <Link to={"/manageOrganizations/addOrganization"}><p>Add an Organization</p></Link> 
                     </div>
                 </div>
                 <div className="mCaveCenter_lower">

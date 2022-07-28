@@ -26,7 +26,6 @@ export default function AddCaveForm(){
         dateAdded,
         bannerImageUrl
         };
-        console.log(cave)
         //This needs work
         addCave(cave).then(() => {navigate("/manageCaves")});
     };
