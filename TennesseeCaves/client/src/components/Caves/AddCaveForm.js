@@ -1,34 +1,39 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
-import { register } from "../../modules/authManager";
+import { addCave } from "../../modules/caveManager";
 
 export default function AddCaveForm(){
     const navigate = useNavigate();
 
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [displayName, setDisplayName] = useState();
-    const [email, setEmail] = useState();
-    const [imageLocation, setImageLocation] = useState();
-    const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
+    const [name, setName] = useState();
+    const [accessId, setAccessId] = useState();
+    const [website, setWebsite] = useState();
+    const [location, setLocation] = useState();
+    const [about, setAbout] = useState();
+    const [bannerImageUrl, setBannerImageUrl] = useState();
+
 
     const registerClick = (e) => {
-    e.preventDefault();
-    if (password && password !== confirmPassword) {
-        alert("Passwords don't match. Do better.");
-    } else {
-        const userProfile = {
-        firstName,
-        lastName,
-        displayName,
-        imageLocation,
-        email,
+        //generate a dateAdded
+        var dateAdded = new Date().toISOString().slice(0, 10);
+        const cave = {
+        name,
+        accessId,
+        website,
+        location,
+        about,
+        dateAdded,
+        bannerImageUrl
         };
-        register(userProfile, password).then(() => navigate("/"));
-    }
+        console.log(cave)
+        //This needs work
+        addCave(cave).then(() => {navigate("/manageCaves")});
     };
+    const returnToManageCaves = () =>{
+        navigate("/manageCaves")
+    }
+
     return(
         <>
             <div className="mCaveMain">
@@ -39,61 +44,54 @@ export default function AddCaveForm(){
                             <Form onSubmit={registerClick}>
                                 <fieldset>
                                     <FormGroup>
-                                    <Label htmlFor="firstName">First Name</Label>
+                                    <Label htmlFor="name">Cave Name</Label>
                                     <Input
-                                        id="firstName"
+                                        id="name"
                                         type="text"
-                                        onChange={(e) => setFirstName(e.target.value)}
+                                        onChange={(e) => setName(e.target.value)}
                                     />
                                     </FormGroup>
                                     <FormGroup>
-                                    <Label htmlFor="lastName">Last Name</Label>
+                                    <Label htmlFor="accessId">Access Level</Label>
                                     <Input
-                                        id="lastName"
+                                        id="accessId"
                                         type="text"
-                                        onChange={(e) => setLastName(e.target.value)}
+                                        onChange={(e) => setAccessId(e.target.value)}
                                     />
                                     </FormGroup>
                                     <FormGroup>
-                                    <Label htmlFor="displayName">Display Name</Label>
+                                    <Label htmlFor="website">Website Url</Label>
                                     <Input
-                                        id="displayName"
+                                        id="website"
                                         type="text"
-                                        onChange={(e) => setDisplayName(e.target.value)}
+                                        onChange={(e) => setWebsite(e.target.value)}
                                     />
                                     </FormGroup>
                                     <FormGroup>
-                                    <Label for="email">Email</Label>
+                                    <Label for="location">Location</Label>
                                     <Input
-                                        id="email"
+                                        id="location"
                                         type="text"
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => setLocation(e.target.value)}
                                     />
                                     </FormGroup>
                                     <FormGroup>
-                                    <Label htmlFor="imageLocation">Profile Image URL</Label>
+                                    <Label htmlFor="about">Short Description</Label>
                                     <Input
-                                        id="imageLocation"
+                                        id="about"
                                         type="text"
-                                        onChange={(e) => setImageLocation(e.target.value)}
+                                        onChange={(e) => setAbout(e.target.value)}
                                     />
                                     </FormGroup>
                                     <FormGroup>
-                                    <Label for="password">Password</Label>
+                                    <Label for="bannerImageUrl">BannerImageUrl</Label>
                                     <Input
-                                        id="password"
-                                        type="password"
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        id="bannerImageUrl"
+                                        type="bannerImageUrl"
+                                        onChange={(e) => setBannerImageUrl(e.target.value)}
                                     />
                                     </FormGroup>
-                                    <FormGroup>
-                                    <Label for="confirmPassword">Confirm Password</Label>
-                                    <Input
-                                        id="confirmPassword"
-                                        type="password"
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
-                                    />
-                                    </FormGroup>
+                                    
                                     <FormGroup>
                                     <Button>Register</Button>
                                     </FormGroup>
@@ -102,7 +100,7 @@ export default function AddCaveForm(){
                         </div>
                     </div>
                     <div className="mCaveCenter_lower">
-                        <h3>Manage Existing Caves</h3>
+                        <button onClick={returnToManageCaves}>Return To Manage Caves</button>
                         <div className="mCaveCenter_lower_caveList">
                             <p>caveTable wuz here</p>
                         </div>

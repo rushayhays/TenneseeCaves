@@ -35,7 +35,7 @@ export default function AdminPage(){
                                 </div>
                             </div>
                         </Link>
-                        <Link to={"/manageCaves"}>
+                        <Link to={"/manageOrganizations"}>
                             <div className="adminCard">
                                 <div className="adminCard_imageArea">
                                     <img src="https://www.nps.gov/wica/planyourvisit/images/Ranger-Tammy-Wright-edit.jpg?maxwidth=1200&maxheight=1200&autorotate=false" alt="organizations, Ranger Tammy Wright"/>
