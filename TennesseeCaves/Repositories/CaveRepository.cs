@@ -60,13 +60,15 @@ namespace TennesseeCaves.Repositories
                         SELECT c.Id, c.[Name], c.AccessId, c.Website, c.[Location], c.About, c.DateAdded, c.BannerImageUrl, 
                         o.Id AS OrgId, o.[Name] AS OrgName, o.Website AS OrgWebsite, o.[Image] AS OrgImage, 
                         t.Id AS TourId, t.TimeOfDay, t.TimeOfYear, t.Price, t.PeoplePerTour,
-                        i.Id AS ImageId, i.Url AS ImageUrl
+                        i.Id AS ImageId, i.Url AS ImageUrl,
+                        a.AccessLevel
                         FROM Cave c
                         LEFT JOIN CaveOrganization co ON co.CaveId = c.Id
                         LEFT JOIN Organization o ON o.Id = co.OrganizationId
                         LEFT JOIN Tour t ON t.CaveId = c.Id
                         LEFT JOIN Image i ON i.CaveId = c.Id
-                        WHERE c.Id = @Id;
+                        LEFT JOIN Access a ON a.Id = c.AccessId
+                        WHERE c.Id = 1
                     ";
                     DbUtils.AddParameter(cmd, "@Id", id);
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -91,7 +93,12 @@ namespace TennesseeCaves.Repositories
                                     BannerImageUrl = DbUtils.GetString(reader, "BannerImageUrl"),
                                     Organizations = new List<Organization>(),
                                     Images = new List<Image>(),
-                                    Tours = new List<Tour>()
+                                    Tours = new List<Tour>(),
+                                    Access = new Access()
+                                    {
+                                        Id=DbUtils.GetInt(reader, "AccessId"),
+                                        AccessLevel=DbUtils.GetString(reader, "AccessLevel")
+                                    }
                                 };
                             }
                             var orgId = DbUtils.GetInt(reader, "OrgId");

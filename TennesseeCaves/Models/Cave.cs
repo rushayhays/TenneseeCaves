@@ -16,5 +16,6 @@ namespace TennesseeCaves.Models
         public List<Tour> Tours { get; set; }
         public List<Organization> Organizations { get; set; }
         public List<Image> Images { get; set; }
+        public Access Access { get; set; }
     }
 }

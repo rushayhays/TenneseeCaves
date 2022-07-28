@@ -14,6 +14,7 @@ export default function Header({isLoggedIn, user}){
 
     
     useEffect(()=>{
+        //This still isn't loading right
         setIsAdminSetting(user?.isAdmin)
     },[])
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getAllCaves } from "../../modules/caveManager";
 import "../../styles/manageCaves.css"
 import CaveListItem from "./CaveListItem";
+import { Link } from "react-router-dom";
+
 
 export default function ManageCaves(){
     const [caves, setCaves] = useState([]);
@@ -18,7 +20,7 @@ export default function ManageCaves(){
                     <div className="mCaveCenter_upper">
                         <h1>Manage Caves</h1>
                         <div className="mCaveCenter_upper_addCave">
-                            <p>Add a Cave</p>
+                           <Link to={"/manageCaves/addCave"}><p>Add a Cave</p></Link> 
                         </div>
                     </div>
                     <div className="mCaveCenter_lower">
