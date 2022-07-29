@@ -1,9 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function OrgListItem({organization}){
+export default function OrgListItem({organization, deleteAnOrg}){
     const navigate = useNavigate();
     const goToEditPage = () =>{
         navigate(`/manageOrganizations/editOrganization/${organization.id}`)
+    }
+
+    const useDeleteButton = () => {
+        deleteAnOrg(organization.id)
     }
 
     return(
@@ -21,7 +25,7 @@ export default function OrgListItem({organization}){
                 <button onClick={goToEditPage}>Edit</button>   
             </div>
             <div className="clc_deleteButton">
-                <button>Delete</button>
+                <button onClick={useDeleteButton}>Delete</button>
             </div>
 
         </div>

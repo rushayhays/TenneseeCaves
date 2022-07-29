@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllCaves } from "../../modules/caveManager";
+import { deleteCave, getAllCaves } from "../../modules/caveManager";
 import "../../styles/manageCaves.css"
 import CaveListItem from "./CaveListItem";
 import { Link } from "react-router-dom";
@@ -8,11 +8,23 @@ import { Link } from "react-router-dom";
 export default function ManageCaves(){
     const [caves, setCaves] = useState([]);
 
+    const renderCavePage = () =>{
+        getAllCaves().then((allCaves)=>{
+            setCaves(allCaves)
+        })
+    }
+
     useEffect(()=>{
         getAllCaves().then((allCaves)=>{
         setCaves(allCaves)})
         
      }, [])
+
+     const handleDeleteCave = (id) => {
+        deleteCave(id).then(()=>{
+            renderCavePage();
+        })
+     }
     return(
         <>
             <div className="mCaveMain">
@@ -30,7 +42,7 @@ export default function ManageCaves(){
                             <div></div>
                             :
                             caves.map((cave)=>(
-                                <CaveListItem cave={cave} key={cave.id}/>
+                                <CaveListItem cave={cave} key={cave.id} handleDeleteCave={handleDeleteCave}/>
                             ))}
                         </div>
 

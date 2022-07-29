@@ -2,16 +2,28 @@ import React, { useEffect, useState } from "react";
 import "../../styles/manageCaves.css"
 import OrgListItem from "./OrgListItem";
 import { Link } from "react-router-dom";
-import { getAllOrganizations } from "../../modules/organizationManager";
+import { getAllOrganizations, deleteOrganization } from "../../modules/organizationManager";
 
 export default function ManageOrganizations(){
     const [orgs, setOrgs] = useState([]);
+
+    const renderOrgs = () =>{
+        getAllOrganizations().then((allOrgs)=>{
+            setOrgs(allOrgs)})
+    }
 
     useEffect(()=>{
         getAllOrganizations().then((allOrgs)=>{
         setOrgs(allOrgs)})
         
      }, [])
+
+    const deleteAnOrg = (id)=>{
+        deleteOrganization(id).then(()=>{
+            renderOrgs();
+        })
+    }
+
     return(
         <>
         <div className="mCaveMain">
@@ -29,7 +41,7 @@ export default function ManageOrganizations(){
                             <div></div>
                             :
                             orgs.map((org)=>(
-                                <OrgListItem organization={org} key={org.id}/>
+                                <OrgListItem organization={org} key={org.id} deleteAnOrg={deleteAnOrg}/>
                             ))}
                     </div>
 

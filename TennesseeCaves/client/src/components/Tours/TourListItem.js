@@ -1,9 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function TourListItem({tour}){
+export default function TourListItem({tour, deleteSelectedTour}){
     const navigate = useNavigate();
     const goToEditPage = () =>{
         navigate(`/manageCaves/editTour/${tour.id}`)
+    }
+
+    const useDeleteButton = () => {
+        deleteSelectedTour(tour.id)
     }
 
     return(
@@ -31,7 +35,7 @@ export default function TourListItem({tour}){
                 <button onClick={goToEditPage}>Edit</button>   
             </div>
             <div className="clc_deleteButton">
-                <button>Delete</button>
+                <button onClick={useDeleteButton}>Delete</button>
             </div>
 
         </div>

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function CaveListItem({cave}){
+export default function CaveListItem({cave, handleDeleteCave}){
     const navigate = useNavigate();
 
     const goToEditPage = () =>{
@@ -13,6 +13,10 @@ export default function CaveListItem({cave}){
 
     const goToCaveOrganization = () =>{
         navigate(`/manageCaves/editOrganizations/${cave.id}`)
+    }
+
+    const deleteCaveListItem = () => {
+        handleDeleteCave(cave.id)
     }
 
     return(
@@ -33,7 +37,7 @@ export default function CaveListItem({cave}){
                 <button onClick={goToCaveOrganization}>Organizations</button>   
             </div>
             <div className="clc_deleteButton">
-                <button>Delete</button>
+                <button onClick={deleteCaveListItem}>Delete</button>
             </div>
 
         </div>

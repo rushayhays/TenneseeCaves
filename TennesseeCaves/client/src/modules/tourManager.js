@@ -28,7 +28,7 @@ export const updateTour = (tour) => {
     });
 };
 
-export const deleteOrganization = (id) => {
+export const deleteTour = (id) => {
     return fetch(baseUrl + `/${id}`, {
       method: "DELETE"
     });

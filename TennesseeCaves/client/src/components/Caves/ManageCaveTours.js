@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllToursForASpecificCave } from "../../modules/tourManager.js"
+import { getAllToursForASpecificCave, deleteTour } from "../../modules/tourManager.js"
 import "../../styles/manageCaves.css"
 import TourListItem from "../Tours/TourListItem.js";
 import { Link, useParams } from "react-router-dom";
@@ -27,7 +27,17 @@ export default function ManageCaveTours(){
                 accessLevel:""
             }
 
-        });
+        }
+    );
+
+   const renderPage = () =>{
+    getAllToursForASpecificCave(id).then((allTours)=>{
+        setTours(allTours)})
+        getSingleCaveById(id).then((singleCave)=>{
+            setCave(singleCave)
+        })
+   }
+
 
     useEffect(()=>{
         getAllToursForASpecificCave(id).then((allTours)=>{
@@ -36,6 +46,13 @@ export default function ManageCaveTours(){
             setCave(singleCave)
         })
      }, [])
+
+     const deleteSelectedTour = (id) => {
+        deleteTour(id).then(()=>{
+            renderPage();
+        })
+
+     }
     return(
         <>
             <div className="mCaveMain">
@@ -60,7 +77,7 @@ export default function ManageCaveTours(){
                             <div></div>
                             :
                             tours.map((tour)=>(
-                                <TourListItem tour={tour} key={tour.id}/>
+                                <TourListItem tour={tour} key={tour.id} deleteSelectedTour={deleteSelectedTour}/>
                             ))}
                         </div>
 
