@@ -41,3 +41,6 @@
             width:150px;
             height:100px;
         }
+.doubleColumn{
+    display:flex;
+}

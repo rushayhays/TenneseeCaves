@@ -11,6 +11,10 @@ export default function CaveListItem({cave}){
         navigate(`/manageCaves/caveTours/${cave.id}`)
     }
 
+    const goToCaveOrganization = () =>{
+        navigate(`/manageCaves/editOrganizations/${cave.id}`)
+    }
+
     return(
         <div className="caveListCard">
             <div className="clc_pic">
@@ -26,7 +30,7 @@ export default function CaveListItem({cave}){
                 <button onClick={goToManageToursPage}>Tours</button>   
             </div>
             <div className="clc_linkButton">
-                <button>Organizations</button>   
+                <button onClick={goToCaveOrganization}>Organizations</button>   
             </div>
             <div className="clc_deleteButton">
                 <button>Delete</button>
