@@ -3,9 +3,10 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
 import { addTour } from "../../modules/tourManager.js"
 
-export default function AddTourForm(){
+export default function AddTourForm({cave}){
     const navigate = useNavigate();
 
+    
     const [timeOfDay, setTimeOfDay] = useState();
     const [timeOfYear, setTimeOfYear] = useState();
     const [price, setPrice] = useState();
@@ -13,12 +14,15 @@ export default function AddTourForm(){
 
 
     const registerClick = (e) => {
-        
+        const priceAsADecimal = Number(price)
+        const peoplePerTourAsInt = Number(peoplePerTour)
+        const theCaveId = cave.id
         const tour = {
+        theCaveId,
         timeOfDay,
         timeOfYear,
-        price,
-        peoplePerTour
+        priceAsADecimal,
+        peoplePerTourAsInt
         };
         //This needs work
         addTour(tour);
@@ -74,9 +78,6 @@ export default function AddTourForm(){
                                 </fieldset>
                             </Form>
                         </div>
-                    </div>
-                    <div className="addTourCenter_lower">
-                        <button onClick={returnToManageOrganizations}>Return To Manage Organizations</button>
                     </div>
                 </div>
 

@@ -11,7 +11,14 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   //Change this around to reflect IsAdmin
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({
+    id:0,
+    firebaseUserId:"",
+    name:"",
+    email:"",
+    isAdmin:false,
+    location:""
+  });
 
   useEffect(() => {
     onLoginStatusChange(setIsLoggedIn);

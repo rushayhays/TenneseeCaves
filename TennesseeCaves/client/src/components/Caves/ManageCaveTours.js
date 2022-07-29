@@ -50,7 +50,7 @@ export default function ManageCaveTours(){
                                 
                             </div>
                             {/* Need to create a page for this link */}
-                           <AddTourForm/> 
+                           <AddTourForm cave={cave} key={cave.id}/> 
                         </div>
                     </div>
                     <div className="mCaveCenter_lower">

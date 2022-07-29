@@ -6,16 +6,12 @@ import { useState } from "react";
 import { Spinner } from "reactstrap";
 
 export default function Header({isLoggedIn, user}){
-    // This use state and the use effect are not actually catching the state of isAdmin properly
-    const[isAdminSetting, setIsAdminSetting] = useState(true)
     const headerLogout = () =>{
         logout();
     }
 
     
     useEffect(()=>{
-        //This still isn't loading right
-        setIsAdminSetting(user?.isAdmin)
     },[])
 
    
@@ -29,7 +25,7 @@ export default function Header({isLoggedIn, user}){
             <div className="headerMiddle">
                 {(isLoggedIn)?
                     <div className="headerMiddleUserInfo">
-                        {(isAdminSetting)?
+                        {(user.isAdmin)?
                         <div className="headerViews">
                             <Link to="/userPage"><p>User View</p></Link>
                             <Link to="/adminPage"><p>Admin View</p></Link>

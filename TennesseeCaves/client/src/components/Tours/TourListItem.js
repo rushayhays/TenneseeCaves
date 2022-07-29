@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function TourListItem({tour}){
     const navigate = useNavigate();
     const goToEditPage = () =>{
-        navigate(`/manageOrganizations/editOrganization/${tour.id}`)
+        navigate(`/manageCaves/editTour/${tour.id}`)
     }
 
     return(
