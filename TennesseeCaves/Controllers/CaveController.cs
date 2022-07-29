@@ -23,6 +23,12 @@ namespace TennesseeCaves.Controllers
             return Ok(_caveRepository.GetAllCaves());
         }
 
+        [HttpGet("userCaves/{id}")]
+        public IActionResult GetAllUsersCaves(int id)
+        {
+            return Ok(_caveRepository.GetAllUsersCaves(id));
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetSingleCave(int id)
         {
@@ -65,6 +71,32 @@ namespace TennesseeCaves.Controllers
         public IActionResult DeleteCave(int id)
         {
             _caveRepository.DeleteCave(id);
+            return NoContent();
+        }
+
+        [HttpPost("userCave")]
+        public IActionResult Post(UserCave userCave)
+        {
+            _caveRepository.AddUserCave(userCave);
+            return CreatedAtAction("Get", new { id = userCave.Id }, userCave);
+        }
+
+        [HttpPut("userCave")]
+        public IActionResult Put(UserCave userCave)
+        {
+            //if (id != cave.Id)
+            //{
+            //    return BadRequest();
+            //}
+
+            _caveRepository.UpdateUserCaveIsFavorite(userCave);
+            return NoContent();
+        }
+
+        [HttpDelete("userCave")]
+        public IActionResult DeleteUserCave(UserCave userCave)
+        {
+            _caveRepository.DeleteUserCave(userCave);
             return NoContent();
         }
     }

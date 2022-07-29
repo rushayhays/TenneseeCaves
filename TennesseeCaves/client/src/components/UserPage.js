@@ -2,14 +2,14 @@ import React from "react";
 import "../styles/userPage.css"
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
-import { getAllCaves } from "../modules/caveManager.js"
+import { getAllUsersCaves } from "../modules/caveManager.js"
 import CaveCard from "../components/Caves/CaveCard"
 
 export default function UserPage({user}){
     const [caves, setCaves] = useState([]);
 
     useEffect(()=>{
-       getAllCaves().then((allCaves)=>{
+       getAllUsersCaves(user.id).then((allCaves)=>{
        setCaves(allCaves)})
        
     }, [])

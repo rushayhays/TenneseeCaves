@@ -4,6 +4,10 @@ export const getAllCaves = () =>{
     return fetch(baseUrl).then((response)=>response.json())
 };
 
+export const getAllUsersCaves = (id) =>{
+  return fetch(`${baseUrl}/userCaves/${id}`).then((response)=>response.json())
+};
+
 export const getSingleCaveById = (id) =>{
     return fetch(`${baseUrl}/${id}`).then((response)=>response.json())
 };
@@ -43,3 +47,5 @@ export const deleteCave = (id) => {
       method: "DELETE"
     });
 };
+
+

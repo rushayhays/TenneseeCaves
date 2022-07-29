@@ -29,6 +29,7 @@ export default function ManageCaveTours(){
 
         }
     );
+    
 
    const renderPage = () =>{
     getAllToursForASpecificCave(id).then((allTours)=>{

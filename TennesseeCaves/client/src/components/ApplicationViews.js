@@ -41,7 +41,7 @@ export default function ApplicationViews({ isLoggedIn, user }) {
                 </Route>
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
-                <Route path="caveDetails/:id" element={<CaveDetails/>}/>
+                <Route path="caveDetails/:id" element={<CaveDetails user={user}/>}/>
                 <Route path="*" element={<p>Whoops, nothing here...</p>} />
             </Route>
         </Routes>

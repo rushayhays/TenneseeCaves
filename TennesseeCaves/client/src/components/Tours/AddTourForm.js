@@ -18,11 +18,11 @@ export default function AddTourForm({cave}){
         const peoplePerTourAsInt = Number(peoplePerTour)
         const theCaveId = cave.id
         const tour = {
-        theCaveId,
+        caveId: theCaveId,
         timeOfDay,
         timeOfYear,
-        priceAsADecimal,
-        peoplePerTourAsInt
+        price: priceAsADecimal,
+        peoplePerTour: peoplePerTourAsInt
         };
         //This needs work
         addTour(tour);

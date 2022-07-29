@@ -17,5 +17,9 @@ namespace TennesseeCaves.Models
         public List<Organization> Organizations { get; set; }
         public List<Image> Images { get; set; }
         public Access Access { get; set; }
+
+        //These were added on to help with rendering the user's cave list
+        public bool IsFavorite { get; set; }
+        public DateTime WhenAdded { get; set; }
     }
 }

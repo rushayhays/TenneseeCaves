@@ -6,7 +6,7 @@ import { getSingleCaveById } from "../../modules/caveManager";
 import OrganizationCard from "../Organizations/OrganizationCard";
 import TourCard from "../Tours/TourCard";
 
-export default function CaveDetails (){
+export default function CaveDetails ({user}){
     const [cave, setCave] = useState(
         {
             id: 0,
@@ -28,6 +28,11 @@ export default function CaveDetails (){
             setCave(singleCave)
         })
     })
+
+    const handleAddUserCave = () => {
+        
+    }
+
     return(
         <>
             {/* search bar, title, login and register buttons, and social media tags */}
@@ -39,9 +44,14 @@ export default function CaveDetails (){
                     <div className="upper_caveBannerMiddle">
                     </div>
                     <div className="lower_caveBannerMiddle">
-                        <h1>{cave.name}</h1>
-                        <h3>Access: Public</h3>
-                        <h3>{cave.location}</h3>
+                        <div>
+                            <h1>{cave.name}</h1>
+                            <h3>Access: Public</h3>
+                            <h3>{cave.location}</h3>
+                        </div>
+                        <div>
+                            <button onClick={handleAddUserCave}>Add To My Caves</button>
+                        </div>
                     </div>
                 </div>
 
