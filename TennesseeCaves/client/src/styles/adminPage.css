@@ -2,7 +2,7 @@
     display:flex;
     background-color: blueviolet;
     color:white;
-    height:400px;
+    height:550px;
 }
 .adminBannerLeft{
     width:25%;
@@ -27,6 +27,8 @@
     }
         .lower_adminBannerMiddle h1{
             margin-top: 0;
+            font-size: 60px;
+            letter-spacing: 4px;
         }
     /**/
 .adminBannerRight{

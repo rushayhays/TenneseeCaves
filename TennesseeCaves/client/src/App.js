@@ -7,6 +7,8 @@ import { getLoggedInUser } from "./modules/userProfileManager.js";
 import { Spinner } from "reactstrap";
 import Footer from "./components/Footer";
 
+
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
