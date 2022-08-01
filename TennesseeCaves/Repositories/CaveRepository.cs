@@ -248,7 +248,7 @@ namespace TennesseeCaves.Repositories
                             Location=@Location,
                             About=@About,
                             DateAdded=@DateAdded,
-                            BannerImageUrl=@BannerImageUrl)
+                            BannerImageUrl=@BannerImageUrl
                         WHERE Id=@Id
                     ";
                     cmd.Parameters.AddWithValue("@Name", cave.Name);
