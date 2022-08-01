@@ -1,0 +1,22 @@
+.editOrgMain{
+    background-color:  rgba(174, 108, 236, 0.603);
+}
+.editOrgMain h1{
+    margin-top:0;
+}
+
+.editOrgCenter{
+
+}
+.editOrgCenter_upper_addCave{
+    width:50%;
+    height:400px;
+}
+    .editOrgCenter_upper_addCave fieldset{
+        height:300px;
+    }
+.editOrgCenter_lower button{
+    background-color: rgba(0, 0, 0, 0.623);
+    color:white;
+    height:30px;
+}

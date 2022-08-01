@@ -22,9 +22,9 @@ export default function Main({isLoggedIn}){
                 </div>
                 <div className="mainBannerMiddle"> {/*The bulk of the main page's items go here. Search bar, Title, Login and Register Buttons*/}
                     <div className="upper_mainBannerMiddle">
-                        <div>
-                            <label></label>
-                            <input type="text"></input>
+                        <div className="searchBar">
+                            <label htmlFor="search"></label>
+                            <input id="search" type="text"></input>
                         </div>
                         {(isLoggedIn)?
                         <div>

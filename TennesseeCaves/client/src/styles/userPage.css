@@ -24,12 +24,21 @@
         display:flex;
         height:33%
     }
+        .searchBar{
+            padding-top: 1%;
+        }
+            #search{
+                height:30px;
+                width:400px;
+            }
         .upper_userBannerMiddle button{
             height:30px;
             width:90px;
         }
     .lower_userBannerMiddle{
-        height:66%
+        height:66%;
+        display:flex;
+        align-items: flex-end;
     }
         .lower_userBannerMiddle h1{
             margin-top: 0;
@@ -43,6 +52,7 @@
 
 .userSearch{
  display:flex;
+ margin-top:20px;
 }
 .userSearchLeft{
     width:25%
@@ -61,21 +71,36 @@
 }
 
 /* This may have to be moved to a diffrent component later on, or reactstrap maight take care of this */
-.caveCard{
-    border:solid black 4px;
-    width:350px;
-  
-}
 
-.caveCard img{
-    max-width:100%;
-    height:auto;
-}
 
-.userCaveCardDetails img{
-    width:50px;
+
+.userCaveCard{
+    background-color: white;
 }
-.userCaveCard_upper{
-    display:flex;
-    justify-content: space-between;
-}
+    .userCaveCard_card{
+        border:solid black 4px;
+        min-width:150px;
+        max-width:350px;
+        height:275px;
+        overflow-y: hidden;
+    }
+    .userCaveCard_imageArea{
+        max-height: 150px;
+        overflow-y:hidden;
+    }
+
+        .userCaveCard img{
+            width: 100%;
+            max-height:auto;
+        }
+    .userCaveCard_aboutArea p{
+        font-family: Arial, Helvetica, sans-serif
+    }
+
+    .userCaveCardDetails img{
+        width:50px;
+    }
+    .userCaveCard_upper{
+        display:flex;
+        justify-content: space-between;
+    }

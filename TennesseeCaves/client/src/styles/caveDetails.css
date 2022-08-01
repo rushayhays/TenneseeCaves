@@ -19,12 +19,24 @@
         .upper_caveBannerMiddle button{
             height:30px;
             width:80px;
+            
         }
     .lower_caveBannerMiddle{
         height:66%
     }
         .lower_caveBannerMiddle h1{
             margin-top: 0;
+            font-size: 80px;
+            letter-spacing: 4px;
+        }
+        .lower_caveBannerMiddle h3{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+        .lower_caveBannerMiddle button{
+            color:white;
+            background-color: rgba(0, 0, 0, 0.61);
+            height:40px;
         }
     /**/
 .caveBannerRight{
@@ -33,6 +45,7 @@
 
 .caveSearch{
  display:flex;
+ margin-bottom: 20px;
 }
 .caveSearchLeft{
     width:25%
@@ -43,8 +56,20 @@
     gap: 20px;
 
 }
+.caveSearchMiddle p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.caveSearchMiddle h2{
+    letter-spacing: 2px;
+}
     .tourArea_cardArea{
         display:flex;
+        flex-wrap: wrap;
+        gap:20px;
+    }
+    .caveSearchMiddle_orgArea{
+        display:flex;
+        flex-wrap:wrap;
         gap:20px;
     }
 

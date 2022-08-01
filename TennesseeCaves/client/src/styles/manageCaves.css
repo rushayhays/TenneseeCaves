@@ -1,10 +1,22 @@
 .mCaveMain{
-    background-color: blueviolet;
+    display:flex;
+}
+.mCaveLeft{
+    background-image: url("https://i0.wp.com/unusualplaces.org/wp-content/uploads/2020/03/3816105716_0a945351af_h.jpg");
+    background-color: aqua;
+    width:25%;
+}
+.mCaveRight{
+    background-image: url("https://i0.wp.com/unusualplaces.org/wp-content/uploads/2020/03/3816105716_0a945351af_h.jpg");
+    background-position: right top;
+    background-color: bisque;
+    width:25%;
 }
 .mCaveCenter{
     background-color: white;
-    margin-left: 25%;
-    margin-right: 25%;
+    width:50%;
+    /* margin-left: 25%;
+    margin-right: 25%; */
 }
 
     .mCaveCenter_upper_addCave{

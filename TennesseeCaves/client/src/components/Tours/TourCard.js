@@ -5,8 +5,10 @@ export default function TourCard({tour}) {
     return(
         <div className="tourCard">
             <div>
-                <p>{tour.timeOfDay}</p>
-                <p>{tour.price}</p>
+                <p>Time of Day:{tour.timeOfDay}</p>
+                <p>Time of Year:{tour.timeOfYear}</p>
+                <p>Price Per Person:{tour.price}</p>
+                <p>Max People Alowed:{tour.peoplePerTour}</p>
             </div>
         </div>
     );

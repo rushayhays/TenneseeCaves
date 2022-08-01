@@ -74,9 +74,9 @@ export default function UserPage({user}){
                 </div>
                 <div className="userBannerMiddle"> {/*The bulk of the user page's items go here. Search bar, Title, Login and Register Buttons*/}
                     <div className="upper_userBannerMiddle">
-                        <div>
-                            <label></label>
-                            <input type="text"></input>
+                        <div className="searchBar">
+                            <label htmlFor="search"></label>
+                            <input id="search" type="text"></input>
                         </div>
                         
                         <div>

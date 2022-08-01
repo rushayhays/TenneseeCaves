@@ -27,6 +27,9 @@ export default function ManageOrganizations(){
     return(
         <>
         <div className="mCaveMain">
+            <div className="mCaveLeft">
+
+            </div>
             <div className="mCaveCenter">
                 <div className="mCaveCenter_upper">
                     <h1>Manage Organizations</h1>
@@ -47,6 +50,9 @@ export default function ManageOrganizations(){
 
                 </div>
             </div>
+            <div className="mCaveRight">
+
+                </div>
         </div>
     </>
     );

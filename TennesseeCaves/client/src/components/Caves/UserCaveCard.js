@@ -18,8 +18,9 @@ export default function UserCaveCard({cave, unFavoriteCave, favoriteACave, remov
 
 
     return(
-        <div className="caveCard">
-                <div className="caveCard_imageArea">
+        <div className="userCaveCard">
+            <div className="userCaveCard_card">
+                <div className="userCaveCard_imageArea">
                     <Link to={`/caveDetails/${cave.id}`}>
                         <img src={cave.bannerImageUrl} alt={cave.name}/>
                     </Link>
@@ -37,9 +38,14 @@ export default function UserCaveCard({cave, unFavoriteCave, favoriteACave, remov
                             </button>
                         }
                     </div>
-                    <p>{cave.about}</p>
-                    <button onClick={removeCaveFUP}>Remove Cave</button>
+                    <div className="userCaveCard_aboutArea">
+                        <p>{cave.about}</p>
+                    </div>
                 </div>
             </div>
+            <div>
+                <button onClick={removeCaveFUP}>Remove Cave</button>
+            </div>
+        </div>
     );
 }

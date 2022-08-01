@@ -28,6 +28,9 @@ export default function ManageCaves(){
     return(
         <>
             <div className="mCaveMain">
+                <div className="mCaveLeft">
+
+                </div>
                 <div className="mCaveCenter">
                     <div className="mCaveCenter_upper">
                         <h1>Manage Caves</h1>
@@ -47,6 +50,9 @@ export default function ManageCaves(){
                         </div>
 
                     </div>
+                </div>
+                <div className="mCaveRight">
+
                 </div>
 
             </div>

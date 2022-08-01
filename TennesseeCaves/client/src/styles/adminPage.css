@@ -4,6 +4,15 @@
     color:white;
     height:550px;
 }
+
+.adminBanner {
+    background-image: url("https://i.natgeofe.com/n/563ada3c-fc64-4b83-8ad5-3abbb3500849/92609_16x9.jpg"); /* The image used */
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 550px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+  }
 .adminBannerLeft{
     width:25%;
 }
@@ -22,7 +31,6 @@
         }
     .lower_adminBannerMiddle{
         height:66%;
-        
         
     }
         .lower_adminBannerMiddle h1{
@@ -65,6 +73,7 @@
     border:solid black 4px;
     flex-grow:1;
     max-height: 190px;
+    background-color: white;
   
 }
 

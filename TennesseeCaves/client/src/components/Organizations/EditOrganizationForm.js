@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, useParams } from "react-router-dom";
 import { getSingleOrganization, updateOrganization } from "../../modules/organizationManager";
-
+import "../../styles/editOrg.css"
 export default function EditOrganizationForm(){
     const { id } = useParams();
     const navigate = useNavigate();
@@ -37,11 +37,11 @@ export default function EditOrganizationForm(){
 
     return(
         <>
-            <div className="mCaveMain">
-                <div className="mCaveCenter">
-                    <div className="mCaveCenter_upper">
+            <div className="editOrgMain">
+                <div className="editOrgCenter">
+                    <div className="editOrgCenter_upper">
                         <h1>Edit an Organization</h1>
-                        <div className="mCaveCenter_upper_addCave">
+                        <div className="editOrgCenter_upper_addCave">
                             <Form onSubmit={registerClick}>
                                 <fieldset>
                                     <FormGroup>
@@ -79,11 +79,9 @@ export default function EditOrganizationForm(){
                             </Form>
                         </div>
                     </div>
-                    <div className="mCaveCenter_lower">
+                    <div className="editOrgCenter_lower">
                         <button onClick={returnToManageOrganizations}>Return To Manage Organizations</button>
-                        <div className="mCaveCenter_lower_caveList">
-                            <p>caveTable wuz here</p>
-                        </div>
+                        
 
                     </div>
                 </div>

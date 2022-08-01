@@ -43,7 +43,12 @@ export default function CaveDetails ({user}){
     return(
         <>
             {/* search bar, title, login and register buttons, and social media tags */}
-            <div className="caveBanner">
+            <div className="caveBanner" style={{  
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${cave.bannerImageUrl})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+            }}>
                 <div className ="caveBannerLeft"> {/*This is added for spacing, not much if anything will go here */}
                 </div>
 
@@ -76,8 +81,8 @@ export default function CaveDetails ({user}){
                         <h2>About</h2>
                         <p>{cave.about}</p>
                     </div>
+                    <h2>Tours</h2>
                     <div className="caveSearchMiddle_tourArea">
-                        <h2>Tours</h2>
                         {(cave.tours.count === 0)?
                             <div></div>
                             :
@@ -88,8 +93,8 @@ export default function CaveDetails ({user}){
                             </div>
                         }
                     </div>
+                    <h2>Organizations</h2>
                     <div className="caveSearchMiddle_orgArea">
-                        <h2>Organizations</h2>
                         {(cave.organizations.count === 0)?
                         <div></div>
                         :

@@ -1,6 +1,7 @@
 .orgCard{
     border:solid black 4px;
     width:45%;
+    background-color: rgba(174, 108, 236, 0.603);
 }
 
 .orgCard img{
