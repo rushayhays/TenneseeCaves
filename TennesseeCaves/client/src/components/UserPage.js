@@ -2,17 +2,68 @@ import React from "react";
 import "../styles/userPage.css"
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
-import { getAllCaves } from "../modules/caveManager.js"
-import CaveCard from "../components/Caves/CaveCard"
+import { getAllUsersCaves, updateCaveIsFavoriteStatus,deleteCaveFromUserPage } from "../modules/caveManager.js"
+import UserCaveCard from "../components/Caves/UserCaveCard"
+import { useParams } from "react-router-dom";
 
 export default function UserPage({user}){
     const [caves, setCaves] = useState([]);
 
+    const renderUserPage = (id) =>{
+        getAllUsersCaves(id).then((allCaves)=>{
+            setCaves(allCaves)
+        })
+        
+    }
     useEffect(()=>{
-       getAllCaves().then((allCaves)=>{
-       setCaves(allCaves)})
-       
+        getAllUsersCaves(user.id).then((allCaves)=>{
+        setCaves(allCaves)})
     }, [])
+
+    //All the functions that control what the buttons on the userCave cards do, need to be on this main page and then 
+    //passed into each card, so that the page can refresh properly after a button is pushed
+    const unFavoriteCave = (cave) =>{
+        var userCaveToChange = {
+            id:0,
+            userProfileId:user.id,
+            caveId: cave.id,
+            isFavorite: false,
+            whenAdded: cave.whenAdded
+        }
+        updateCaveIsFavoriteStatus(userCaveToChange).then(()=>{
+            getAllUsersCaves(user.id).then((allCaves)=>{
+                setCaves(allCaves)
+            })
+        })
+    }
+
+    const favoriteACave = (cave) =>{
+        var userCaveToChange = {
+            id:0,
+            userProfileId:user.id,
+            caveId: cave.id,
+            isFavorite: true,
+            whenAdded: cave.whenAdded
+        }
+        updateCaveIsFavoriteStatus(userCaveToChange).then(()=>{
+            getAllUsersCaves(user.id).then((allCaves)=>{
+                setCaves(allCaves)
+            })
+        })
+    }
+    const removeCaveFromUserPage = (cave) =>{
+        var userCaveToChange = {
+            userProfileId:user.id,
+            caveId: cave.id,
+            isFavorite: cave.isFavorite,
+            whenAdded: cave.whenAdded
+        }
+        deleteCaveFromUserPage(userCaveToChange).then(()=>{
+            getAllUsersCaves(user.id).then((allCaves)=>{
+                setCaves(allCaves)
+            })
+        })
+    }
 
     return(
         <>
@@ -52,7 +103,7 @@ export default function UserPage({user}){
                     <div></div>
                     :
                     caves.map((cave)=>(
-                        <CaveCard cave={cave} key={cave.id}/>
+                        <UserCaveCard cave={cave} key={cave.id} unFavoriteCave={unFavoriteCave} favoriteACave={favoriteACave} removeCaveFromUserPage={removeCaveFromUserPage}/>
                     ))}
                 </div>
                 <div className="userSearchRight">

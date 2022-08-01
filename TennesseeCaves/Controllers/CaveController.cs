@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TennesseeCaves.Repositories;
 using TennesseeCaves.Models;
+using System.Collections.Generic;
 
 namespace TennesseeCaves.Controllers
 {
@@ -22,10 +23,81 @@ namespace TennesseeCaves.Controllers
             return Ok(_caveRepository.GetAllCaves());
         }
 
+        [HttpGet("userCaves/{id}")]
+        public IActionResult GetAllUsersCaves(int id)
+        {
+            return Ok(_caveRepository.GetAllUsersCaves(id));
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetSingleCave(int id)
         {
             return Ok(_caveRepository.GetSingleCave(id));
+        }
+
+        [HttpPost]
+        public IActionResult Post(Cave cave)
+        {
+            _caveRepository.AddCave(cave);
+            return CreatedAtAction("Get", new { id = cave.Id }, cave);
+        }
+
+        [HttpPut("edit/{id}")]
+        public IActionResult Put(int id, Cave cave)
+        {
+            if (id != cave.Id)
+            {
+                return BadRequest();
+            }
+
+            _caveRepository.UpdateCaveGeneralInfo(cave);
+            return NoContent();
+        }
+
+        [HttpPost("caveOrganization")]
+        public IActionResult PostCaveOrganization(Cave cave)
+        {
+            //Create a list of Organization Ids to pass to Update method
+            List<int> orgIds = new List<int>();
+            foreach(Organization o in cave.Organizations)
+            {
+                orgIds.Add(o.Id);
+            }
+            _caveRepository.UpdateCaveOrganizations(cave.Id, orgIds);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCave(int id)
+        {
+            _caveRepository.DeleteCave(id);
+            return NoContent();
+        }
+
+        [HttpPost("userCave")]
+        public IActionResult Post(UserCave userCave)
+        {
+            _caveRepository.AddUserCave(userCave);
+            return CreatedAtAction("Get", new { id = userCave.Id }, userCave);
+        }
+
+        [HttpPut("userCave")]
+        public IActionResult Put(UserCave userCave)
+        {
+            //if (id != cave.Id)
+            //{
+            //    return BadRequest();
+            //}
+
+            _caveRepository.UpdateUserCaveIsFavorite(userCave);
+            return NoContent();
+        }
+
+        [HttpDelete("userCave")]
+        public IActionResult DeleteUserCave(UserCave userCave)
+        {
+            _caveRepository.DeleteUserCave(userCave);
+            return NoContent();
         }
     }
 }

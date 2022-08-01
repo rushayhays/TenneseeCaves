@@ -1,0 +1,48 @@
+.mCaveMain{
+    background-color: blueviolet;
+}
+.mCaveCenter{
+    background-color: white;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+    .mCaveCenter_upper_addCave{
+        border:solid black 2px;
+        width:75%;
+        height:200px;
+    }
+.mCaveCenter h1{
+    margin:0;
+}
+
+.mCaveCenter p{
+    margin:0;
+}
+
+.mCaveCenter_lower_caveList{
+    background-color: gray;
+    padding-top:10px;
+}
+    .caveListCard{
+        background-color: white;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display:flex;
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+        .clc_pic img{
+            width:100px;
+            height:100px;
+        }
+        .tour_pic img{
+            width:150px;
+            height:100px;
+        }
+.doubleColumn{
+    display:flex;
+}
+
+

@@ -42,10 +42,10 @@
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: antiquewhite;
     gap: 20px;
 
 }
+
 .userSearchRight{
     width:25%;
 }
@@ -60,4 +60,12 @@
 .caveCard img{
     max-width:100%;
     height:auto;
+}
+
+.userCaveCardDetails img{
+    width:50px;
+}
+.userCaveCard_upper{
+    display:flex;
+    justify-content: space-between;
 }

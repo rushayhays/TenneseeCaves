@@ -1,12 +1,21 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "../styles/header.css"
 import { logout } from "../modules/authManager"
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Spinner } from "reactstrap";
 
 export default function Header({isLoggedIn, user}){
     const headerLogout = () =>{
         logout();
     }
+
+    
+    useEffect(()=>{
+    },[])
+
+   
+
     return(
         <div className="header">
             <div className="headerLeft">
@@ -18,7 +27,7 @@ export default function Header({isLoggedIn, user}){
                     <div className="headerMiddleUserInfo">
                         {(user.isAdmin)?
                         <div className="headerViews">
-                            <Link to="/userPage"><p>User View</p></Link>
+                            <Link to={`/userPage`}><p>User View</p></Link>
                             <Link to="/adminPage"><p>Admin View</p></Link>
                         </div>
                         :

@@ -24,6 +24,8 @@ namespace TennesseeCaves
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<ICaveRepository, CaveRepository>();
+            services.AddTransient<IOrganizationRepository, OrganizationRepository>();
+            services.AddTransient<ITourRepository, TourRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
