@@ -112,7 +112,7 @@ namespace TennesseeCaves.Repositories
                         LEFT JOIN Tour t ON t.CaveId = c.Id
                         LEFT JOIN Image i ON i.CaveId = c.Id
                         LEFT JOIN Access a ON a.Id = c.AccessId
-                        WHERE c.Id = 1
+                        WHERE c.Id = @Id
                     ";
                     DbUtils.AddParameter(cmd, "@Id", id);
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -145,45 +145,56 @@ namespace TennesseeCaves.Repositories
                                     }
                                 };
                             }
-                            var orgId = DbUtils.GetInt(reader, "OrgId");
-                            var existingOrg = orgList.FirstOrDefault(o => o.Id == orgId);
-                            if (existingOrg == null)
+                            //Need to check if any organizations exist at all for the cave before trying to retrieve them
+                            var orgId = DbUtils.GetNullableInt(reader, "OrgId");
+                            if (orgId != null) //If there are organizations THEN loop through this
                             {
-                                existingOrg = new Organization()
-                                {
-                                    Id = DbUtils.GetInt(reader, "OrgId"),
-                                    Name = DbUtils.GetString(reader, "OrgName"),
-                                    Website = DbUtils.GetString(reader, "OrgWebsite"),
-                                    OrgImage = DbUtils.GetString(reader, "OrgImage")
-                                };
-                                orgList.Add(existingOrg);
+                                var existingOrg = orgList.FirstOrDefault(o => o.Id == orgId);
+                                    if (existingOrg == null)
+                                    {
+                                        existingOrg = new Organization()
+                                        {
+                                            Id = DbUtils.GetInt(reader, "OrgId"),
+                                            Name = DbUtils.GetString(reader, "OrgName"),
+                                            Website = DbUtils.GetString(reader, "OrgWebsite"),
+                                            OrgImage = DbUtils.GetString(reader, "OrgImage")
+                                        };
+                                        orgList.Add(existingOrg);
+                                    }
                             }
-                            var tourId = DbUtils.GetInt(reader, "TourId");
-                            var existingTour = tourList.FirstOrDefault(t => t.Id == tourId);
-                            if (existingTour == null)
+                            //Do the same for tours
+                            var tourId = DbUtils.GetNullableInt(reader, "TourId");
+                            if(tourId != null)
                             {
-                                existingTour = new Tour()
+                                var existingTour = tourList.FirstOrDefault(t => t.Id == tourId);
+                                if (existingTour == null)
                                 {
-                                    Id = DbUtils.GetInt(reader, "TourId"),
-                                    CaveId = DbUtils.GetInt(reader, "Id"),
-                                    TimeOfDay = DbUtils.GetString(reader, "TimeOfDay"),
-                                    TimeOfYear = DbUtils.GetString(reader, "TimeOfYear"),
-                                    Price = DbUtils.GetDecimal(reader, "Price"),
-                                    PeoplePerTour = DbUtils.GetInt(reader, "PeoplePerTour")
-                                };
-                                tourList.Add(existingTour);
+                                    existingTour = new Tour()
+                                    {
+                                        Id = DbUtils.GetInt(reader, "TourId"),
+                                        CaveId = DbUtils.GetInt(reader, "Id"),
+                                        TimeOfDay = DbUtils.GetString(reader, "TimeOfDay"),
+                                        TimeOfYear = DbUtils.GetString(reader, "TimeOfYear"),
+                                        Price = DbUtils.GetDecimal(reader, "Price"),
+                                        PeoplePerTour = DbUtils.GetInt(reader, "PeoplePerTour")
+                                    };
+                                    tourList.Add(existingTour);
+                                }
                             }
-                            var imageId = DbUtils.GetInt(reader, "ImageId");
-                            var existingImage = imageList.FirstOrDefault(i => i.Id == imageId);
-                            if (existingImage == null)
+                            var imageId = DbUtils.GetNullableInt(reader, "ImageId");
+                            if(imageId != null)
                             {
-                                existingImage = new Image()
+                                var existingImage = imageList.FirstOrDefault(i => i.Id == imageId);
+                                if (existingImage == null)
                                 {
-                                    Id = DbUtils.GetInt(reader, "TourId"),
-                                    CaveId = DbUtils.GetInt(reader, "Id"),
-                                    Url = DbUtils.GetString(reader, "ImageUrl")
-                                };
-                                imageList.Add(existingImage);
+                                    existingImage = new Image()
+                                    {
+                                        Id = DbUtils.GetInt(reader, "TourId"),
+                                        CaveId = DbUtils.GetInt(reader, "Id"),
+                                        Url = DbUtils.GetString(reader, "ImageUrl")
+                                    };
+                                    imageList.Add(existingImage);
+                                }
                             }
                         }
                         reader.Close();
@@ -350,7 +361,7 @@ namespace TennesseeCaves.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE UserProfileCave
-                        SET IsFavorite=@IsFavorite,
+                        SET IsFavorite=@IsFavorite
                         WHERE CaveId=@CaveId AND UserProfileId = @UserProfileID
                     ";
                     cmd.Parameters.AddWithValue("@IsFavorite", userCave.IsFavorite);

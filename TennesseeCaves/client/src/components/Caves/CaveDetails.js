@@ -2,7 +2,7 @@ import "../../styles/caveDetails.css"
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getSingleCaveById } from "../../modules/caveManager";
+import { addCaveToUserPage, getSingleCaveById } from "../../modules/caveManager";
 import OrganizationCard from "../Organizations/OrganizationCard";
 import TourCard from "../Tours/TourCard";
 
@@ -30,7 +30,14 @@ export default function CaveDetails ({user}){
     })
 
     const handleAddUserCave = () => {
-        
+        var whenCaveAdded = new Date().toISOString().slice(0, 10);
+        var userCaveToAdd = {
+            userProfileId:user.id,
+            caveId: cave.id,
+            isFavorite: false,
+            whenAdded: whenCaveAdded
+        }
+        addCaveToUserPage(userCaveToAdd)
     }
 
     return(

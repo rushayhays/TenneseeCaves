@@ -48,4 +48,37 @@ export const deleteCave = (id) => {
     });
 };
 
+//Get back to this
+export const addCaveToUserPage = (userCave) => {
+  return fetch(`${baseUrl}/userCave`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userCave),
+  });
+};
+
+//this first
+export const updateCaveIsFavoriteStatus = (userCave) => {
+  return fetch(`${baseUrl}/userCave`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userCave),
+  });
+};
+
+export const deleteCaveFromUserPage = (userCave) => {
+  return fetch(`${baseUrl}/userCave`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userCave),
+  });
+};
+
+
 

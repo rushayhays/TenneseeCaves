@@ -27,7 +27,7 @@ export default function Header({isLoggedIn, user}){
                     <div className="headerMiddleUserInfo">
                         {(user.isAdmin)?
                         <div className="headerViews">
-                            <Link to="/userPage"><p>User View</p></Link>
+                            <Link to={`/userPage`}><p>User View</p></Link>
                             <Link to="/adminPage"><p>Admin View</p></Link>
                         </div>
                         :
