@@ -31,8 +31,8 @@ export default function AdminPage(){
                                     <img src="https://i.natgeofe.com/n/f3500942-4eb9-4dfa-b6c9-53cd5510cd46/47789_16x9.jpg?w=1200" alt="cave Image"/>
                                 </div>
                             </Link>
-                                <div>
-                                    <p>click this too manage caves</p>
+                                <div className="adminCard_textArea">
+                                    <p>manage caves</p>
                                 </div>
                         </div>
                         <div className="adminCard">
@@ -41,8 +41,8 @@ export default function AdminPage(){
                                     <img src="https://www.nps.gov/wica/planyourvisit/images/Ranger-Tammy-Wright-edit.jpg?maxwidth=1200&maxheight=1200&autorotate=false" alt="organizations, Ranger Tammy Wright"/>
                                 </div>
                             </Link>
-                                <div>
-                                    <p>click this to manage organizations</p>
+                                <div className="adminCard_textArea">
+                                    <p>manage organizations</p>
                                 </div>
                         </div>
                         <div className="adminCard">
@@ -51,8 +51,8 @@ export default function AdminPage(){
                                     <img src="https://s3-us-west-1.amazonaws.com/contentlab.studiod/getty/0157feb3d7054a7294dce785fbbca5ec" alt="User Profile Image"/>
                                 </div>
                             </Link>
-                                <div>
-                                    <p>click this to manage users</p>
+                                <div className="adminCard_textArea">
+                                    <p>manage users</p>
                                 </div>
                         </div>
                     </div>

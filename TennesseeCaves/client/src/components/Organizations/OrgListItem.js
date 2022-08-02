@@ -21,11 +21,13 @@ export default function OrgListItem({organization, deleteAnOrg}){
             <div className="clc_name">
                 <p>{organization.website}</p>
             </div>
-            <div className="clc_linkButton">
-                <button onClick={goToEditPage}>Edit</button>   
-            </div>
-            <div className="clc_deleteButton">
-                <button onClick={useDeleteButton}>Delete</button>
+            <div className="editDeleteButton">
+                <div className="clc_linkButton">
+                    <button onClick={goToEditPage}>Edit</button>   
+                </div>
+                <div className="clc_deleteButton">
+                    <button onClick={useDeleteButton}>Delete</button>
+                </div>
             </div>
 
         </div>

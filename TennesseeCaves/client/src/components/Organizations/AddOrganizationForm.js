@@ -20,7 +20,9 @@ export default function AddOrganizationForm(){
         orgImage
         };
         //This needs work
-        addOrganization(organization);
+        addOrganization(organization).then(()=>{
+            returnToManageOrganizations();
+        })
     };
     const returnToManageOrganizations = () =>{
         navigate("/manageOrganizations")
@@ -66,7 +68,7 @@ export default function AddOrganizationForm(){
                                     </FormGroup>
                                     <br></br>
                                     <FormGroup>
-                                    <Button>Register</Button>
+                                    <Button>Create Organization</Button>
                                     </FormGroup>
                                 </fieldset>
                             </Form>

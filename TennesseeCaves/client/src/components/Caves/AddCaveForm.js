@@ -28,7 +28,7 @@ export default function AddCaveForm(){
         bannerImageUrl
         };
         //This needs work
-        addCave(cave).then(() => {navigate("/manageCaves")});
+        addCave(cave).then(() => navigate("/manageCaves"));
     };
     const returnToManageCaves = () =>{
         navigate("/manageCaves")
@@ -113,7 +113,6 @@ export default function AddCaveForm(){
                             <button onClick={returnToManageCaves}>Return To Manage Caves</button>
                         </div>
                     </div>
-                   
                 </div>
 
             </div>

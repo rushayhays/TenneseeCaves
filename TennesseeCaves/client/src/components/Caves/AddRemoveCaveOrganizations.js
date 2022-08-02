@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/manageCaves.css"
 import AddRemoveOrgListItem from "../Organizations/AddRemoveOrgListItem";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { getSingleCaveById, updateCaveOrganizations } from "../../modules/caveManager.js";
 import { getAllOrganizations } from "../../modules/organizationManager.js";
 
 
 export default function AddRemoveCaveOrganizations(){
+    const navigate = useNavigate();
     const {id} = useParams();
     const [allOtherOrgs, setAllOtherOrgs] = useState([]);
     const [caveOrgs, setCaveOrgs] = useState([]);
@@ -43,6 +44,10 @@ export default function AddRemoveCaveOrganizations(){
         })
      }, [])
 
+     const returnToManageCaves = () =>{
+        navigate("/manageCaves")
+    }
+
 
      const runUpdate = () =>{
         var caveToSubmit = {
@@ -62,7 +67,7 @@ export default function AddRemoveCaveOrganizations(){
             }
         } 
 
-        updateCaveOrganizations(caveToSubmit)
+        updateCaveOrganizations(caveToSubmit).then(() => navigate("/manageCaves"));
      }
 
 
@@ -83,6 +88,9 @@ export default function AddRemoveCaveOrganizations(){
                                 
                             </div>
                         </div>
+                    </div>
+                    <div className="addEditCaveCenter_lower">
+                        <button onClick={returnToManageCaves}>Return To Manage Caves</button>
                     </div>
                     <div className="addRemoveCaveOrg_title">
                         <h2>Organizations</h2>

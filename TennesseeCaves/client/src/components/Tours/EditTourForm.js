@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, useParams } from "react-router-dom";
 import { getSingleTour, updateTour } from "../../modules/tourManager";
+import "../../styles/editTour.css";
 
 export default function EditTourForm(){
     const { id } = useParams();
@@ -32,23 +33,24 @@ export default function EditTourForm(){
 
     const registerClick = (e) => {
         //This needs work
-        updateTour(tour);
+        updateTour(tour)
     };
     const returnToManageTours = () =>{
-        navigate("/manageCaves")
+        navigate(`/manageCaves/caveTours/${tour.caveId}`)
     }
 
     return(
         <>
-            <div className="mCaveMain">
-                <div className="mCaveCenter">
-                    <div className="mCaveCenter_upper">
+            <div className="editTourMain">
+                <div className="editTourCenter">
+                    <div className="editTourCenter_upper">
                         <h1>Edit a Tour</h1>
-                        <div className="mCaveCenter_upper_addCave">
+                        <div className="editTourCenter_upper_addCave">
                             <Form onSubmit={registerClick}>
                                 <fieldset>
                                     <FormGroup>
                                     <Label htmlFor="timeOfDay">Time of Day</Label>
+                                    <br></br>
                                     <Input
                                         id="timeOfDay"
                                         type="text"
@@ -56,8 +58,10 @@ export default function EditTourForm(){
                                         value={tour.timeOfDay}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label htmlFor="timeOfYear">Time Of Year</Label>
+                                    <br></br>
                                     <Input
                                         id="timeOfYear"
                                         type="text"
@@ -65,8 +69,10 @@ export default function EditTourForm(){
                                         value={tour.timeOfYear}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label for="price">Price</Label>
+                                    <br></br>
                                     <Input
                                         id="price"
                                         type="price"
@@ -74,8 +80,10 @@ export default function EditTourForm(){
                                         value={tour.price}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label for="peoplePerTour">People Per Tour</Label>
+                                    <br></br>
                                     <Input
                                         id="peoplePerTour"
                                         type="peoplePerTour"
@@ -83,19 +91,16 @@ export default function EditTourForm(){
                                         value={tour.peoplePerTour}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
-                                    <Button>Register</Button>
+                                    <Button>Save Changes</Button>
                                     </FormGroup>
                                 </fieldset>
                             </Form>
                         </div>
-                    </div>
-                    <div className="mCaveCenter_lower">
-                        <button onClick={returnToManageTours}>Return To Manage Tours</button>
-                        <div className="mCaveCenter_lower_caveList">
-                            <p>caveTable wuz here</p>
+                        <div className="editTourCenter_lower">
+                            <button onClick={returnToManageTours}>Return To Tour List</button>
                         </div>
-
                     </div>
                 </div>
 

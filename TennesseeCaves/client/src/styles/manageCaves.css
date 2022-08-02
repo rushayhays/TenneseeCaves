@@ -24,8 +24,14 @@
         width:75%;
         height:200px;
     }
+        .mCaveCenter_upper_addCave a{
+            color:black;
+        }
+        .mCaveCenter_upper_addCave a:hover{
+            color:blueviolet;
+        }
 .mCaveCenter h1{
-    margin:0;
+    margin:0 0 10px 0;
     
 }
 
@@ -37,6 +43,7 @@
     display:flex;
     align-items: center;
     gap:20px;
+    margin-top:20px;
 }
     .addRemoveCaveOrg_title button{
         height:30px;
@@ -64,6 +71,15 @@
         .tour_pic img{
             width:150px;
             height:100px;
+        }
+        .editDeleteButton{
+            display:flex;
+            gap:20px;
+        }
+        .editDeleteButton button{
+            height:30px;
+            color:white;
+            background-color: rgba(0, 0, 0, 0.651);
         }
 .doubleColumn{
     display:flex;

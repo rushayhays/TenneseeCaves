@@ -23,9 +23,16 @@ export default function ApplicationViews({ isLoggedIn, user }) {
         <Routes>
             <Route path="/">
                 <Route index element={<Main isLoggedIn={isLoggedIn}/>}/>
-                {/* <Route index element={isLoggedIn ? <Main user={user} /> : <Navigate to="/login" />} /> */}
                 <Route path="userPage" element={<UserPage user={user}/>}/>
                 <Route path="adminPage" element={<AdminPage/>}/>
+                {/* <Route path="manageCaves">
+                  <Route index element={<ManageCaves/>}/>
+                  <Route path="addCave" element={<AddCaveForm/>}/>
+                  <Route path="editCave/:id" element={<EditGeneralCave/>}/>
+                  <Route path="caveTours/:id" element={<ManageCaveTours/>}/>
+                  <Route path="editTour/:id" element={<EditTourForm/>}/>
+                  <Route path="editOrganizations/:id" element={<AddRemoveCaveOrganizations/>}/>
+                </Route> */}
                 <Route path="manageCaves">
                   <Route index element={<ManageCaves/>}/>
                   <Route path="addCave" element={<AddCaveForm/>}/>

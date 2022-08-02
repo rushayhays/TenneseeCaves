@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function TourListItem({tour, deleteSelectedTour}){
+export default function TourListItem({tour, deleteSelectedTour, cave}){
     const navigate = useNavigate();
     const goToEditPage = () =>{
         navigate(`/manageCaves/editTour/${tour.id}`)

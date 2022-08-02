@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllToursForASpecificCave, deleteTour } from "../../modules/tourManager.js"
 import "../../styles/manageCaves.css"
 import TourListItem from "../Tours/TourListItem.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { getSingleCaveById } from "../../modules/caveManager.js";
 import AddTourForm from "../Tours/AddTourForm.js";
 
@@ -29,6 +29,8 @@ export default function ManageCaveTours(){
 
         }
     );
+
+    const navigate = useNavigate();
     
 
    const renderPage = () =>{
@@ -47,6 +49,10 @@ export default function ManageCaveTours(){
             setCave(singleCave)
         })
      }, [])
+
+     const returnToManageCaves = () =>{
+        navigate("/manageCaves")
+    }
 
      const deleteSelectedTour = (id) => {
         deleteTour(id).then(()=>{
@@ -74,6 +80,9 @@ export default function ManageCaveTours(){
                            <AddTourForm cave={cave} key={cave.id}/> 
                         </div>
                     </div>
+                    <div className="addEditCaveCenter_lower">
+                        <button onClick={returnToManageCaves}>Return To Manage Caves</button>
+                    </div>
                     <div className="mCaveCenter_lower">
                         <h3>Manage Existing Tours</h3>
                         <div className="mCaveCenter_lower_caveList">
@@ -81,10 +90,9 @@ export default function ManageCaveTours(){
                             <div></div>
                             :
                             tours.map((tour)=>(
-                                <TourListItem tour={tour} key={tour.id} deleteSelectedTour={deleteSelectedTour}/>
+                                <TourListItem tour={tour} key={tour.id} deleteSelectedTour={deleteSelectedTour} cave={cave}/>
                             ))}
                         </div>
-
                     </div>
                 </div>
                 <div className="mCaveRight">
