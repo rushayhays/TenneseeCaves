@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/manageCaves.css"
 import OrgListItem from "./OrgListItem";
 import { Link } from "react-router-dom";
 import { getAllOrganizations, deleteOrganization } from "../../modules/organizationManager";
+import "../../styles/manageCaves.css"
 
 export default function ManageOrganizations(){
     const [orgs, setOrgs] = useState([]);
@@ -52,7 +52,7 @@ export default function ManageOrganizations(){
             </div>
             <div className="mCaveRight">
 
-                </div>
+            </div>
         </div>
     </>
     );

@@ -45,15 +45,16 @@ export default function EditGeneralCave(){
 
     return(
         <>
-            <div className="mCaveMain">
-                <div className="mCaveCenter">
-                    <div className="mCaveCenter_upper">
+            <div className="addEditCaveMain">
+                <div className="addEditCaveCenter">
+                    <div className="addEditCaveCenter_upper">
                         <h1>Edit a Cave</h1>
-                        <div className="mCaveCenter_upper_addCave">
+                        <div className="addEditCaveCenter_upper_addCave">
                             <Form onSubmit={registerClick}>
                                 <fieldset>
                                     <FormGroup>
                                     <Label htmlFor="name">Cave Name</Label>
+                                    <br></br>
                                     <Input
                                         id="name"
                                         type="text"
@@ -61,16 +62,20 @@ export default function EditGeneralCave(){
                                         value={cave.name}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label htmlFor="accessId" value={cave.accessId} >Access Level</Label>
+                                    <br></br>
                                     <select onChange={handleEdit}>
                                         <option id="accessId" value="1">Public</option>
                                         <option id="accessId" value="2">Restricted</option>
                                         <option id="accessId" value="3">Private</option>
                                     </select>
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label htmlFor="website">Website Url</Label>
+                                    <br></br>
                                     <Input
                                         id="website"
                                         type="text"
@@ -78,8 +83,10 @@ export default function EditGeneralCave(){
                                         value={cave.website}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label htmlFor="location">Location</Label>
+                                    <br></br>
                                     <Input
                                         id="location"
                                         type="text"
@@ -87,8 +94,10 @@ export default function EditGeneralCave(){
                                         value={cave.location}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label htmlFor="about">About</Label>
+                                    <br></br>
                                     <Input
                                         id="about"
                                         type="text"
@@ -96,8 +105,10 @@ export default function EditGeneralCave(){
                                         value={cave.about}
                                     />
                                     </FormGroup>
+                                    <br></br>
                                     <FormGroup>
                                     <Label for="bannerImageUrl">Url for Cave Banner Image</Label>
+                                    <br></br>
                                     <Input
                                         id="bannerImageUrl"
                                         type="bannerImageUrl"
@@ -105,21 +116,18 @@ export default function EditGeneralCave(){
                                         value={cave.bannerImageUrl}
                                     />
                                     </FormGroup>
-                                    
+                                    <br></br>
                                     <FormGroup>
-                                    <Button>Register</Button>
+                                    <Button>Edit Cave</Button>
                                     </FormGroup>
                                 </fieldset>
                             </Form>
                         </div>
-                    </div>
-                    <div className="mCaveCenter_lower">
-                        <button onClick={returnToManageCaves}>Return To Manage Organizations</button>
-                        <div className="mCaveCenter_lower_caveList">
-                            <p>caveTable wuz here</p>
+                        <div className="addEditCaveCenter_lower">
+                            <button onClick={returnToManageCaves}>Return To Manage Caves</button>
                         </div>
-
                     </div>
+                   
                 </div>
 
             </div>

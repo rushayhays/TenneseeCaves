@@ -69,9 +69,12 @@ export default function AddRemoveCaveOrganizations(){
     return(
         <>
             <div className="mCaveMain">
+                <div className="mCaveLeft">
+
+                </div>
                 <div className="mCaveCenter">
                     <div className="mCaveCenter_upper">
-                        <h1>Manage Tours for {cave.name}</h1>
+                        <h1>Manage Organizations for {cave.name}</h1>
                         <div className="mTourCenter_upper_addCave">
                             <div>
                                 <p>{cave.name}</p>
@@ -81,22 +84,27 @@ export default function AddRemoveCaveOrganizations(){
                             </div>
                         </div>
                     </div>
-                    
-                    <div className="mCaveCenter_lower">
-                        <h3>All Organizations  to Possibly Add To Caverns</h3> <button onClick={runUpdate}>Update Organizations</button>
-                        <div className="mCaveCenter_lower_caveList">
-                        {(allOtherOrgs.count === 0)?
-                            <div></div>
-                            :
-                            allOtherOrgs.map((org)=>(
-                                <AddRemoveOrgListItem organization={org} key={org.id} caveOrgs={caveOrgs} setCaveOrgs={setCaveOrgs} isLoading={isLoading}/>
-                                
-                            ))}
+                    <div className="addRemoveCaveOrg_title">
+                        <h2>Organizations</h2>
+                        <button onClick={runUpdate}>Update Organizations</button>
+                    </div>
+                    <div className="mCaveCenter_lower_caveList">
+                        <div className="mCaveCenter_lower">
+                            
+                            
+                            {(allOtherOrgs.count === 0)?
+                                <div></div>
+                                :
+                                allOtherOrgs.map((org)=>(
+                                    <AddRemoveOrgListItem organization={org} key={org.id} caveOrgs={caveOrgs} setCaveOrgs={setCaveOrgs} isLoading={isLoading}/>
+                                    
+                                ))}
+                            </div>
                         </div>
                     </div>
-            
-                </div>
+                <div className="mCaveRight">
 
+                </div>
             </div>
 
         </>

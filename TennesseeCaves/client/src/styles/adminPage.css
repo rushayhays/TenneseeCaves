@@ -1,7 +1,6 @@
 .adminBanner{
     display:flex;
     background-color: blueviolet;
-    color:white;
     height:550px;
 }
 

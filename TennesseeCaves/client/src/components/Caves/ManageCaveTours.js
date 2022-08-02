@@ -57,6 +57,9 @@ export default function ManageCaveTours(){
     return(
         <>
             <div className="mCaveMain">
+                <div className="mCaveLeft">
+
+                </div>
                 <div className="mCaveCenter">
                     <div className="mCaveCenter_upper">
                         <h1>Manage Tours for {cave.name}</h1>
@@ -84,7 +87,9 @@ export default function ManageCaveTours(){
 
                     </div>
                 </div>
+                <div className="mCaveRight">
 
+                </div>
             </div>
 
         </>

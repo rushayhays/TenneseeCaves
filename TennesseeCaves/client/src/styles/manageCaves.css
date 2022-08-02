@@ -3,20 +3,20 @@
 }
 .mCaveLeft{
     background-image: url("https://i0.wp.com/unusualplaces.org/wp-content/uploads/2020/03/3816105716_0a945351af_h.jpg");
-    background-color: aqua;
+    background-color:white;
     width:25%;
 }
 .mCaveRight{
     background-image: url("https://i0.wp.com/unusualplaces.org/wp-content/uploads/2020/03/3816105716_0a945351af_h.jpg");
     background-position: right top;
-    background-color: bisque;
+    background-color: white;
     width:25%;
 }
 .mCaveCenter{
     background-color: white;
-    width:50%;
-    /* margin-left: 25%;
-    margin-right: 25%; */
+    width:47.5%;
+    padding:20px 20px 20px 20px;
+   
 }
 
     .mCaveCenter_upper_addCave{
@@ -32,6 +32,17 @@
 .mCaveCenter p{
     margin:0;
 }
+
+.addRemoveCaveOrg_title{
+    display:flex;
+    align-items: center;
+    gap:20px;
+}
+    .addRemoveCaveOrg_title button{
+        height:30px;
+        color:white;
+        background-color: rgba(0, 0, 0, 0.726);
+    }
 
 .mCaveCenter_lower_caveList{
     background-color: gray;

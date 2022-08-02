@@ -44,7 +44,7 @@ export default function UserCaveCard({cave, unFavoriteCave, favoriteACave, remov
                 </div>
             </div>
             <div>
-                <button onClick={removeCaveFUP}>Remove Cave</button>
+                <button className="removeCaveButton" onClick={removeCaveFUP}>Remove Cave</button>
             </div>
         </div>
     );
