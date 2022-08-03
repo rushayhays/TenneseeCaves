@@ -16,6 +16,7 @@ export default function AddCaveForm(){
 
 
     const registerClick = (e) => {
+        e.preventDefault();
         //generate a dateAdded
         var dateAdded = new Date().toISOString().slice(0, 10);
         const cave = {
@@ -27,8 +28,9 @@ export default function AddCaveForm(){
         dateAdded,
         bannerImageUrl
         };
-        //This needs work
-        addCave(cave).then(() => navigate("/manageCaves"));
+        addCave(cave).then(() =>{
+            returnToManageCaves();
+        });
     };
     const returnToManageCaves = () =>{
         navigate("/manageCaves")

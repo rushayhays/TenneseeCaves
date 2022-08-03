@@ -36,8 +36,10 @@ export default function EditGeneralCave(){
 
 
     const registerClick = (e) => {
-        //This needs work
-        updateCave(cave);
+        e.preventDefault();
+        updateCave(cave).then(()=>{
+            returnToManageCaves();
+        });
     };
     const returnToManageCaves = () =>{
         navigate("/manageCaves")

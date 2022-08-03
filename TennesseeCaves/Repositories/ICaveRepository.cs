@@ -15,5 +15,8 @@ namespace TennesseeCaves.Repositories
         void AddUserCave(UserCave userCave);
         void DeleteUserCave(UserCave userCave);
         void UpdateUserCaveIsFavorite(UserCave userCave);
+        List<Cave> SearchCaves(string searchPrompt);
+        List<Cave> GetAllUsersCavesOrderedByFavorite(int id);
+        List<Cave> GetAllUsersCavesOrderedByMostRecent(int id);
     }
 }

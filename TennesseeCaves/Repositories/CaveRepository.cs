@@ -63,6 +63,7 @@ namespace TennesseeCaves.Repositories
                         FROM Cave c
                         LEFT JOIN UserProfileCave upc ON upc.CaveId = c.Id
                         WHERE upc.UserProfileId = @Id
+                        ORDER BY c.Name
                     ";
                     DbUtils.AddParameter(cmd, "@Id", id);
 
@@ -370,6 +371,136 @@ namespace TennesseeCaves.Repositories
                     cmd.Parameters.AddWithValue("@CaveId", userCave.CaveId);
 
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<Cave> SearchCaves(string searchPrompt)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, [Name], AccessId, Website, [Location], About, DateAdded, BannerImageUrl
+                        FROM Cave
+                        WHERE Name LIKE @name";
+                    cmd.Parameters.AddWithValue("@name", $"%{searchPrompt}%");
+
+                    //I added this in
+                    List<Cave> caves = new List<Cave>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Cave cave = new Cave()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            AccessId = DbUtils.GetInt(reader, "AccessId"),
+                            Website = DbUtils.GetString(reader, "Website"),
+                            Location = DbUtils.GetString(reader, "Location"),
+                            About = DbUtils.GetString(reader, "About"),
+                            DateAdded = DbUtils.GetDateTime(reader, "DateAdded"),
+                            BannerImageUrl = DbUtils.GetString(reader, "BannerImageUrl")
+
+                        };
+                        caves.Add(cave);
+                    }
+                    reader.Close();
+
+                    return caves;
+                }
+            }
+        }
+
+        public List<Cave> GetAllUsersCavesOrderedByFavorite(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT c.Id, c.[Name], c.AccessId, c.Website, c.[Location], c.About, c.DateAdded, c.BannerImageUrl,
+                        upc.Id AS UpcId, upc.UserProfileId, upc.IsFavorite, upc.WhenAdded
+                        FROM Cave c
+                        LEFT JOIN UserProfileCave upc ON upc.CaveId = c.Id
+                        WHERE upc.UserProfileId = @Id
+                        ORDER BY upc.IsFavorite DESC
+                    ";
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    List<Cave> caves = new List<Cave>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Cave cave = new Cave()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            AccessId = DbUtils.GetInt(reader, "AccessId"),
+                            Website = DbUtils.GetString(reader, "Website"),
+                            Location = DbUtils.GetString(reader, "Location"),
+                            About = DbUtils.GetString(reader, "About"),
+                            DateAdded = DbUtils.GetDateTime(reader, "DateAdded"),
+                            BannerImageUrl = DbUtils.GetString(reader, "BannerImageUrl"),
+                            IsFavorite = DbUtils.GetBool(reader, "IsFavorite"),
+                            WhenAdded = DbUtils.GetDateTime(reader, "WhenAdded")
+
+                        };
+                        caves.Add(cave);
+                    }
+                    reader.Close();
+
+                    return caves;
+                }
+            }
+        }
+
+        public List<Cave> GetAllUsersCavesOrderedByMostRecent(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT c.Id, c.[Name], c.AccessId, c.Website, c.[Location], c.About, c.DateAdded, c.BannerImageUrl,
+                        upc.Id AS UpcId, upc.UserProfileId, upc.IsFavorite, upc.WhenAdded
+                        FROM Cave c
+                        LEFT JOIN UserProfileCave upc ON upc.CaveId = c.Id
+                        WHERE upc.UserProfileId = @Id
+                        ORDER BY upc.WhenAdded DESC
+                    ";
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    List<Cave> caves = new List<Cave>();
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Cave cave = new Cave()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            AccessId = DbUtils.GetInt(reader, "AccessId"),
+                            Website = DbUtils.GetString(reader, "Website"),
+                            Location = DbUtils.GetString(reader, "Location"),
+                            About = DbUtils.GetString(reader, "About"),
+                            DateAdded = DbUtils.GetDateTime(reader, "DateAdded"),
+                            BannerImageUrl = DbUtils.GetString(reader, "BannerImageUrl"),
+                            IsFavorite = DbUtils.GetBool(reader, "IsFavorite"),
+                            WhenAdded = DbUtils.GetDateTime(reader, "WhenAdded")
+
+                        };
+                        caves.Add(cave);
+                    }
+                    reader.Close();
+
+                    return caves;
                 }
             }
         }

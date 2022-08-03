@@ -68,6 +68,9 @@
             width:100px;
             height:100px;
         }
+        .clc_name{
+            background-color: aqua;
+        }
         .tour_pic img{
             width:150px;
             height:100px;

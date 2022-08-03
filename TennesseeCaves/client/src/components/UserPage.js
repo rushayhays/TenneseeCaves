@@ -86,6 +86,9 @@ export default function UserPage({user}){
                     </div>
                     <div className="lower_userBannerMiddle">
                         <h1>My Adventure</h1>
+                        <div className="adventureSortArea">
+                            <button>Alphabetical</button> <button>Favorites</button> <button>Most Recent</button>
+                        </div>
                     </div>
                 </div>
                 <div className="userBannerRight"> {/*Not much goes here either, but I'll probably put some social media links in*/}

@@ -25,17 +25,25 @@
         display:flex;
         height:33%;
     }
+        .upper_mainBannerMiddle button{
+            height:30px;
+            width:80px;
+        }
         .searchBar{
             padding-top: 1%;
+            display: flex;
+            flex-direction: column;
         }
             #search{
                 height:30px;
                 width:400px;
             }
-        .upper_mainBannerMiddle button{
-            height:30px;
-            width:80px;
-        }
+            #searchButton{
+                height:30px;
+                width:100px;
+                color:white;
+                background-color: rgba(0, 0, 0, 0.788);
+            }
     .lower_mainBannerMiddle{
         height:66%;
         display:flex;
@@ -61,11 +69,30 @@
 }
 .mainSearchMiddle{
     width:50%;
+
+}
+    .dynamicSearchResults_area{
+       margin-bottom:10px;
+        
+    }
+        .dynamicSearchResults_results{
+        
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+    .dynamicSearchResults_area button{
+        height:30px;
+        color:white;
+        background-color: rgba(0, 0, 0, 0.774);
+        margin-top:10px;
+    }
+.mainSearchMiddle_allCaves{
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
-
 }
 
 .mainSearchRight{

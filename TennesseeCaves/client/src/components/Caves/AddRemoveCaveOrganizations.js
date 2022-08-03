@@ -49,7 +49,8 @@ export default function AddRemoveCaveOrganizations(){
     }
 
 
-     const runUpdate = () =>{
+     const runUpdate = (e) =>{
+        e.preventDefault();
         var caveToSubmit = {
             id: cave.id,
             name:cave.name,

@@ -99,6 +99,24 @@ namespace TennesseeCaves.Controllers
             _caveRepository.DeleteUserCave(userCave);
             return NoContent();
         }
+
+        [HttpGet("searchResults/{searchPrompt}")]
+        public IActionResult GetSearchResults(string searchPrompt)
+        {
+            return Ok(_caveRepository.SearchCaves(searchPrompt));
+        }
+
+        [HttpGet("favorite/{id}")]
+        public IActionResult GetFavoriteCaves(int id)
+        {
+            return Ok(_caveRepository.GetAllUsersCavesOrderedByFavorite(id));
+        }
+
+        [HttpGet("recent/{id}")]
+        public IActionResult GetRecentCaves(int id)
+        {
+            return Ok(_caveRepository.GetAllUsersCavesOrderedByMostRecent(id));
+        }
     }
 }
 

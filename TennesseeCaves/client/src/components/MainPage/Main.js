@@ -1,17 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getAllCaves } from "../../modules/caveManager";
+import { getAllCaves, searchCaves } from "../../modules/caveManager";
 import "../../styles/main.css"
 import CaveCard from "../Caves/CaveCard";
 
 export default function Main({isLoggedIn}){
     const [caves, setCaves] = useState([]);
+    const [searchQuery, setSearchQuery] = useState();
+    const [searchedCaves, setSearchedCaves] = useState([]);
 
     useEffect(()=>{
        getAllCaves().then((allCaves)=>{
        setCaves(allCaves)})
        
     }, [])
+
+   const searchInput = useRef(null);
+
+    const logSearchResults = () => {
+        searchCaves(searchQuery).then((allSearchedCaves) => {
+            setSearchedCaves(allSearchedCaves)
+            searchInput.current.value = "";
+        })
+        
+    }
+
+    const handleSearchChange = (e) =>{
+        setSearchQuery(e.target.value)
+    }
+
+    const clearSearchResults = () => {
+        var emptyArray = [];
+        setSearchedCaves(emptyArray);
+    }
+
+    
+
 
     return(
         <>
@@ -24,7 +48,9 @@ export default function Main({isLoggedIn}){
                     <div className="upper_mainBannerMiddle">
                         <div className="searchBar">
                             <label htmlFor="search"></label>
-                            <input id="search" type="text"></input>
+                            <input id="search" type="text" onChange={handleSearchChange} ref={searchInput}></input>
+                            {/* <input id="search" type="text" onChange={(e)=>setSearchQuery(e.target.value)}></input> */}
+                            <button id="searchButton" onClick={logSearchResults}>Seach Caves</button>
                         </div>
                         {(isLoggedIn)?
                         <div>
@@ -52,12 +78,33 @@ export default function Main({isLoggedIn}){
 
                 </div>
                 <div className="mainSearchMiddle">
+                    {(searchedCaves.length === 0 )?
+                        <div>
+
+                        </div>
+                        :
+                        <div className="dynamicSearchResults_area">
+                            <h3>Search Results</h3>
+                            <div className="dynamicSearchResults_results">
+                                {searchedCaves.map((cave)=>(
+                                    <CaveCard cave={cave} key={cave.id}/>
+                                ))}
+                            </div>
+                            <button onClick={clearSearchResults}>Clear Search Results</button>
+                        </div>
+                    }
+
+                    {/* The above is search results, the below is the usual caves */}
+
                     {(caves.count === 0)?
                     <div></div>
                     :
-                    caves.map((cave)=>(
-                        <CaveCard cave={cave} key={cave.id}/>
-                    ))}
+                    <div className="mainSearchMiddle_allCaves">
+                        {caves.map((cave)=>(
+                            <CaveCard cave={cave} key={cave.id}/>
+                        ))}
+                    </div>
+                    }
                 </div>
                 <div className="mainSearchRight">
 

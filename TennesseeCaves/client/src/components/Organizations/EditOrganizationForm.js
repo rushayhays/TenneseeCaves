@@ -29,8 +29,11 @@ export default function EditOrganizationForm(){
 
 
     const registerClick = (e) => {
+        e.preventDefault();
         //This needs work
-        updateOrganization(organization);
+        updateOrganization(organization).then(()=>{
+            returnToManageOrganizations();
+        });
     };
     const returnToManageOrganizations = () =>{
         navigate("/manageOrganizations")

@@ -80,5 +80,8 @@ export const deleteCaveFromUserPage = (userCave) => {
   });
 };
 
+export const searchCaves = (searchPrompt) =>{
+  return fetch(`${baseUrl}/searchResults/${searchPrompt}`).then((response)=>response.json())
+};
 
 

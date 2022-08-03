@@ -32,8 +32,10 @@ export default function EditTourForm(){
 
 
     const registerClick = (e) => {
-        //This needs work
-        updateTour(tour)
+        e.preventDefault();
+        updateTour(tour).then(()=>{
+            returnToManageTours();
+        })
     };
     const returnToManageTours = () =>{
         navigate(`/manageCaves/caveTours/${tour.caveId}`)

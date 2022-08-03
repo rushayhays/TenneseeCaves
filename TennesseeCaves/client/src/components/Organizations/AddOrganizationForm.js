@@ -13,13 +13,13 @@ export default function AddOrganizationForm(){
 
 
     const registerClick = (e) => {
-        
+        e.preventDefault();
         const organization = {
         name,
         website,
         orgImage
         };
-        //This needs work
+        
         addOrganization(organization).then(()=>{
             returnToManageOrganizations();
         })
