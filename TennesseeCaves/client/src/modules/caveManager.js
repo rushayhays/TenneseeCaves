@@ -59,7 +59,7 @@ export const addCaveToUserPage = (userCave) => {
   });
 };
 
-//this first
+
 export const updateCaveIsFavoriteStatus = (userCave) => {
   return fetch(`${baseUrl}/userCave`, {
     method: "PUT",
@@ -82,6 +82,14 @@ export const deleteCaveFromUserPage = (userCave) => {
 
 export const searchCaves = (searchPrompt) =>{
   return fetch(`${baseUrl}/searchResults/${searchPrompt}`).then((response)=>response.json())
+};
+
+export const getAllUsersFavCaves = (id) =>{
+  return fetch(`${baseUrl}/favorite/${id}`).then((response)=>response.json())
+};
+
+export const getAllUsersRecentCaves = (id) =>{
+  return fetch(`${baseUrl}/recent/${id}`).then((response)=>response.json())
 };
 
 

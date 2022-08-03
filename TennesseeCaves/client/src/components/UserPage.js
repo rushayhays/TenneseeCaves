@@ -2,15 +2,15 @@ import React from "react";
 import "../styles/userPage.css"
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
-import { getAllUsersCaves, updateCaveIsFavoriteStatus,deleteCaveFromUserPage } from "../modules/caveManager.js"
+import { getAllUsersCaves, updateCaveIsFavoriteStatus,deleteCaveFromUserPage, getAllUsersRecentCaves, getAllUsersFavCaves } from "../modules/caveManager.js"
 import UserCaveCard from "../components/Caves/UserCaveCard"
 import { useParams } from "react-router-dom";
 
 export default function UserPage({user}){
     const [caves, setCaves] = useState([]);
 
-    const renderUserPage = (id) =>{
-        getAllUsersCaves(id).then((allCaves)=>{
+    const alphatize = () =>{
+        getAllUsersCaves(user.id).then((allCaves)=>{
             setCaves(allCaves)
         })
         
@@ -65,6 +65,17 @@ export default function UserPage({user}){
         })
     }
 
+    const recentize = () =>{
+        getAllUsersRecentCaves(user.id).then((allCaves)=>{
+            setCaves(allCaves)
+        })
+    }
+    const favoritize = () =>{
+        getAllUsersFavCaves(user.id).then((allCaves)=>{
+            setCaves(allCaves)
+        })
+    }
+
     return(
         <>
             {/* search bar, title, login and register buttons, and social media tags */}
@@ -87,7 +98,7 @@ export default function UserPage({user}){
                     <div className="lower_userBannerMiddle">
                         <h1>My Adventure</h1>
                         <div className="adventureSortArea">
-                            <button>Alphabetical</button> <button>Favorites</button> <button>Most Recent</button>
+                            <button onClick={alphatize}>Alphabetical</button> <button onClick={favoritize}>Favorites</button> <button onClick={recentize}>Most Recent</button>
                         </div>
                     </div>
                 </div>
